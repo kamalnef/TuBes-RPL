@@ -4,6 +4,9 @@
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
@@ -15479,4 +15482,152 @@ textarea.form-control {
 
 #home-section {
   margin-top: 40px;
+}
+
+/* Sign In Page */
+.sign-in {
+  font-family: 'Poppins', sans-serif;
+  height: 100vh;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #000000;
+}
+
+.sign-in .logo {
+  margin-bottom: -18px;
+}
+
+.sign-in .logo p {
+  font-size: 23px;
+}
+
+.sign-in .form .box h4 {
+  font-size: 19px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.sign-in .form {
+  border: 1px solid black;
+  padding: 15px;
+  width: 350px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.sign-in .form .box .input {
+  display: flex;
+  flex-direction: column;
+}
+
+.sign-in .form .input input {
+  margin-top: -7px;
+  margin-bottom: 10px;
+  border-radius: 3px;
+  border: 1px solid black;
+  padding: 3px;
+  padding-left: 10px;
+}
+
+.sign-in .form .input .xyz:focus {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.sign-in .form .input label {
+  color: #000000;
+  font-weight: 400;
+}
+
+.sign-in .form .box .input .rm-box {
+  margin-bottom: 5px;
+}
+
+.sign-in .form .box .input .rm-box span {
+  color: #000000;
+}
+
+.sign-in .form .input .rm-box input {
+  border: 1px solid black;
+}
+
+.sign-in .form .box .submit button {
+  width: 100%;
+  height: 33px;
+  font-size: 14px;
+  border: 0px solid black;
+  background-color: #dbcc8f;
+  border-radius: 3px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+}
+
+.sign-in .form .box .gf-si {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.sign-in .form .box .gf-si p {
+  margin-bottom: 5px;
+}
+
+.sign-in .form .box .gf-si .icon i {
+  border: 1px solid black;
+  padding: 7px;
+  border-radius: 3px;
+  color: #000000;
+  font-size: 20px;
+  margin-bottom: 10px;
+  transition: 0.3s ease-in-out;
+}
+
+.sign-in .form .box .gf-si .icon i:hover {
+  background-color: #dbcc8f;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.sign-in .form .box .gf-si .icon .google {
+  margin-right: 25px;
+}
+
+.sign-in .form .box .gf-si .icon .facebook {
+  margin-left: 25px;
+  width: 35px;
+  text-align: center;
+}
+
+.sign-in .logo .navbar-brand {
+  color: #000000;
+}
+
+.sign-in .form .box .submit {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.sign-in .form .box .to-rp {
+  text-align: center;
+  margin-top: 5px;
+}
+
+.sign-in .form .box .to-rp .baru-kah {
+  margin-bottom: -5px;
+}
+
+.sign-in .form .box .to-rp .a-to-rp {
+  color: #423d2b;
+  font-size: 17px;
+}
+
+.sign-in .form .box .to-rp .p-a-to-rp {
+  margin-bottom: 0px;
+}
+
+/* Register Page */
+.sign-in .form .submit {
+  margin-top: 5px;
 }

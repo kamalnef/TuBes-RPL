@@ -29,6 +29,8 @@
 </head>
 
 <body class="goto-here">
+
+
 	<div class="header__top py-1 bg-black">
 		<div class="container">
 			<div class="row atas-nav">
@@ -40,8 +42,8 @@
 				<div class="col-lg-6 col-md-5">
 					<div class="header__top__right">
 						<div class="header__top__links">
-							<a href="#">Sign in</a>
-							<a href="#">Sing out</a>
+							<a href="login.php">Sign in</a>
+							<a href="signout.php">Sign out</a>
 						</div>
 					</div>
 				</div>
@@ -73,7 +75,7 @@
 	</div>
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 		<div class="container">
-			<a class="navbar-brand" href="index.html">Minishop</a>
+			<a class="navbar-brand" href="index.php">Minishop</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
 				aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="oi oi-menu"></span> Menu
@@ -81,17 +83,17 @@
 
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item login"><a href="login.html" class="nav-link">Sign In</a></li>
-					<li class="nav-item login"><a href="login.html" class="nav-link">Sign Out</a></li>
-					<li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+					<li class="nav-item login"><a href="login.php" class="nav-link">Sign In</a></li>
+					<li class="nav-item login"><a href="signout.php" class="nav-link">Sign Out</a></li>
+					<li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false">Catalog</a>
 						<div class="dropdown-menu" aria-labelledby="dropdown04">
 							<a class="dropdown-item" href="shop.html">Shop</a>
 							<a class="dropdown-item" href="product-single.html">Single Product</a>
-							<a class="dropdown-item" href="cart.html">Cart</a>
-							<a class="dropdown-item" href="checkout.html">Checkout</a>
+							<a class="dropdown-item" href="cart.php">Cart</a>
+							<a class="dropdown-item" href="checkout.php">Checkout</a>
 						</div>
 					</li>
 					<li class="nav-item active"><a href="about.html" class="nav-link">About</a></li>
