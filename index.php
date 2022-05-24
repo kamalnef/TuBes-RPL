@@ -85,7 +85,7 @@
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item login"><a href="login.php" class="nav-link">Sign In</a></li>
 					<li class="nav-item login"><a href="signout.php" class="nav-link">Sign Out</a></li>
-					<li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
+					<li class="nav-item active"><a href="index.php" class="nav-link">Home</a></li>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false">Catalog</a>
@@ -96,10 +96,9 @@
 							<a class="dropdown-item" href="checkout.php">Checkout</a>
 						</div>
 					</li>
-					<li class="nav-item active"><a href="about.html" class="nav-link">About</a></li>
-					<li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+					<li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
 					<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-					<li class="nav-item cta cta-colored"><a href="cart.html" class="nav-link"><span
+					<li class="nav-item cta cta-colored"><a href="cart.php" class="nav-link"><span
 								class="icon-shopping_cart"></span>[0]</a></li>
 
 				</ul>
