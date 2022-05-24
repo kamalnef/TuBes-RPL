@@ -114,15 +114,14 @@
 				<div class="container-fluid p-0">
 					<div class="row d-md-flex no-gutters slider-text align-items-center justify-content-end"
 						data-scrollax-parent="true">
-						<img class="one-third order-md-last img-fluid" src="images/bg_1.png" alt="">
+						<img class="one-third order-md-last img-fluid" src="images/banner/BE.png" alt="">
 						<div class="one-forth d-flex align-items-center ftco-animate"
 							data-scrollax=" properties: { translateY: '70%' }">
 							<div class="text">
-								<span class="subheading">#New Arrival</span>
+								<span class="subheading">#BTSBE</span>
 								<div class="horizontal">
-									<h1 class="mb-4 mt-3">Shoes Collection 2019</h1>
-									<p class="mb-4">A small river named Duden flows by their place and supplies it with
-										the necessary regelialia. It is a paradisematic country.</p>
+									<h1 class="mb-4 mt-3">MAMA 2021's ALBUM OF THE YEAR</h1>
+									<p class="mb-4">Rasakan sentuhan langsung BTS dalam menyampaikan pesan mereka dari setiap lagu ke lagu.</p>
 
 									<p><a href="#" class="btn-custom">Discover Now</a></p>
 								</div>
@@ -137,15 +136,14 @@
 				<div class="container-fluid p-0">
 					<div class="row d-flex no-gutters slider-text align-items-center justify-content-end"
 						data-scrollax-parent="true">
-						<img class="one-third order-md-last img-fluid" src="images/bg_2.png" alt="">
+						<img class="one-third order-md-last img-fluid" src="images/banner/BTS Memories of 2020 DVD.png" alt="" width="100">
 						<div class="one-forth d-flex align-items-center ftco-animate"
 							data-scrollax=" properties: { translateY: '70%' }">
 							<div class="text">
-								<span class="subheading">#New Arrival</span>
+								<span class="subheading">#Restore_Memory</span>
 								<div class="horizontal">
-									<h1 class="mb-4 mt-3">New Shoes Winter Collection</h1>
-									<p class="mb-4">A small river named Duden flows by their place and supplies it with
-										the necessary regelialia. It is a paradisematic country.</p>
+									<h1 class="mb-4 mt-3">BTS MEMORIES OF 2020 DVD NOW RELEASED</h1>
+									<p class="mb-4">Kumpulan kenangan ARMY dan BTS di tahun tersibuk di tengah kesulitan pandemi COVID-19.</p>
 
 									<p><a href="#" class="btn-custom">Discover Now</a></p>
 								</div>
