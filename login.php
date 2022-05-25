@@ -1,7 +1,7 @@
 <?php
     session_start();
     require 'function.php';
-
+    include("config.php");
     // Cek Cookie
     if(isset($_COOKIE['id']) && isset($_COOKIE['key']))
     {
@@ -9,13 +9,14 @@
         $key = $_COOKIE['key'];
 
         // Ambil username berdasarkan id
-        $result = mysqli_query($conn, "SELECT username_user FROM user WHERE id_user = $id");
+        $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = $id");
         $row = mysqli_fetch_assoc($result);
 
         // Bandingkan cookie dan username
         if($key === hash('sha256', $row['username_user']))
         {
             $_SESSION['login'] = true;
+            $_SESSION['nama_lengkap'] = $row['nama_lengkap'];
         }
     }
 
@@ -27,7 +28,7 @@
 
     if(isset($_POST["login"]))
     {
-        if(($_POST["username"] == 'admin') && ($_POST['password'] == 'admin123'))
+        if(($_POST["username"] == 'admin') && ($_POST['password'] == 'admin1234'))
         {
             header("Location: admin.php");
             $_SESSION["admin"] = true;
@@ -54,7 +55,6 @@
                     setcookie('id', $row['id_user'], time()+60);
                     setcookie('key', hash('sha256', $row['username_user']), time()+60);
                 }
-
                 header("location: index.php");
                 exit;
             }

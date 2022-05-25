@@ -1,6 +1,6 @@
 <?php
 
-    $conn = mysqli_connect("localhost", "root", "", "tbsbd");
+    include("config.php");
 
     function registrasi($data) {
         global $conn;

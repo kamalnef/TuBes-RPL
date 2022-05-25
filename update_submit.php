@@ -4,7 +4,7 @@
         exit();
     }
 
-    $conn = mysqli_connect("localhost", "root", "", "tbsbd");
+    include("config.php");
 
     $key = $_POST['key'];
     $id_kategori = $_POST['id_kategori'];

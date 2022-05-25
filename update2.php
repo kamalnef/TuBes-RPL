@@ -52,7 +52,7 @@
 
         $key = $_GET['key'];
 
-        $conn = mysqli_connect("localhost", "root", "", "tbsbd");
+        include("config.php");
 
         $query = mysqli_query($conn, "SELECT * FROM produk WHERE id_produk = '$key' limit 1");
 

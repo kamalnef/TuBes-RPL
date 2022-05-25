@@ -8,7 +8,7 @@
 		exit;
 	}
 
-	$conn = mysqli_connect("localhost", "root", "", "tbsbd");
+	include("config.php");
 
 	if(isset($_POST['tambah']))
 	{
@@ -189,7 +189,7 @@
 									</td>
 
 									<td class="image-prod">
-										<img src="images/PRODUCT ALBUM K-FEVER/<?= $product['gambar_produk'] ?>" alt="<?= $product['gambar_produk'] ?>" width="100">
+										<img src="images/produk/<?= $product['gambar_produk'] ?>" alt="<?= $product['gambar_produk'] ?>" width="100">
 									</td>
 
 									<td class="product-name">
