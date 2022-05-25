@@ -1,13 +1,14 @@
 <?php
-include("config.php");
+	include("config.php");
 	session_start();
-?>
 
+	
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<title>K-Fever</title>
+	<title>Minishop - Free Bootstrap 4 Template by Colorlib</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -39,6 +40,7 @@ include("config.php");
 			<div class="row atas-nav">
 				<div class="col-lg-6 col-md-7">
 					<div class="header__top__left">
+						<p>Free shipping, 30-day return or refund guarantee.</p>
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-5">
@@ -74,7 +76,7 @@ include("config.php");
 			</div>
 		</div>
 	</div>
-	<div class="fixed-top">
+	</div>
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 		<div class="container">
 			<a class="navbar-brand" href="index.php">Minishop</a>
@@ -87,8 +89,8 @@ include("config.php");
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item login"><a href="login.php" class="nav-link">Sign In</a></li>
 					<li class="nav-item login"><a href="signout.php" class="nav-link">Sign Out</a></li>
-					<li class="nav-item active"><a href="index.php" class="nav-link">Home</a></li>
-					<li class="nav-item active"><a href="shop.php" class="nav-link">Shop</a></li>
+					<li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
+					<li class="nav-item dropdown"><a href="shop.php" class="nav-link">Shop</a></li>
 					<li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
 					<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
 					<li class="nav-item cta cta-colored"><a href="cart.php" class="nav-link"><span
@@ -98,69 +100,25 @@ include("config.php");
 			</div>
 		</div>
 	</nav>
-	</div>
 	<!-- END nav -->
 
-	<section id="home-section" class="hero">
-		<div class="home-slider owl-carousel">
-			<div class="slider-item js-fullheight">
-				<div class="overlay"></div>
-				<div class="container-fluid p-0">
-					<div class="row d-md-flex no-gutters slider-text align-items-center justify-content-end"
-						data-scrollax-parent="true">
-						<img class="one-third order-md-last img-fluid" src="images/banner/BE.png" alt="">
-						<div class="one-forth d-flex align-items-center ftco-animate"
-							data-scrollax=" properties: { translateY: '70%' }">
-							<div class="text">
-								<span class="subheading">#BTSBE</span>
-								<div class="horizontal">
-									<h1 class="mb-4 mt-3">MAMA 2021's ALBUM OF THE YEAR</h1>
-									<p class="mb-4">Rasakan sentuhan langsung BTS dalam menyampaikan pesan mereka dari setiap lagu ke lagu.</p>
-
-									<p><a href="#" class="btn-custom">Discover Now</a></p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="slider-item js-fullheight">
-				<div class="overlay"></div>
-				<div class="container-fluid p-0">
-					<div class="row d-flex no-gutters slider-text align-items-center justify-content-end"
-						data-scrollax-parent="true">
-						<img class="one-third order-md-last img-fluid" src="images/banner/BTS Memories of 2020 DVD.png" alt="" width="100">
-						<div class="one-forth d-flex align-items-center ftco-animate"
-							data-scrollax=" properties: { translateY: '70%' }">
-							<div class="text">
-								<span class="subheading">#Restore_Memory</span>
-								<div class="horizontal">
-									<h1 class="mb-4 mt-3">BTS MEMORIES OF 2020 DVD NOW RELEASED</h1>
-									<p class="mb-4">Kumpulan kenangan ARMY dan BTS di tahun tersibuk di tengah kesulitan pandemi COVID-19.</p>
-
-									<p><a href="#" class="btn-custom">Discover Now</a></p>
-								</div>
-							</div>
-						</div>
-					</div>
+	<div class="hero-wrap hero-bread" style="background-image: url('images/bg_6.jpg');">
+		<div class="container">
+			<div class="row no-gutters slider-text align-items-center justify-content-center">
+				<div class="col-md-9 ftco-animate text-center">
+					<h1 class="mb-0 bread">Shop</h1>
 				</div>
 			</div>
 		</div>
-	</section>
+	</div>
 
 	<section class="ftco-section bg-light">
 		<div class="container">
-			<div class="row justify-content-center mb-3 pb-3">
-				<div class="col-md-12 heading-section text-center ftco-animate">
-					<h2 class="mb-4">Beloved Products!</h2>
-				</div>
-		</div>
-		</div>
-		<div class="container">
 			<div class="row">
+				<div class="col-md-8 col-lg-10 order-md-last">
+					<div class="row">
 			<?php
-				$query = "SELECT * FROM produk INNER JOIN kategori_barang ON produk.id_kategori = kategori_barang.id_kategori LIMIT 8";
+				$query = "SELECT * FROM produk INNER JOIN kategori_barang ON produk.id_kategori = kategori_barang.id_kategori";
 				$result = mysqli_query($conn, $query);
 				if(!$result){
 				  die ("Query Error: ".mysqli_errno($conn).
@@ -192,69 +150,24 @@ include("config.php");
 				<?php
 				}
 				?>
-
-			</div>
-		</div>
-	</section>
-
-
-
-	<section class="ftco-section ftco-choose ftco-no-pb ftco-no-pt">
-		<div class="container">
-			<div class="row no-gutters">
-				<div class="col-lg-4">
-					<div class="choose-wrap divider-one img p-5 d-flex align-items-end"
-						style="background-image: url(images/choose-1.jpg);">
-
-						<div class="text text-center text-white px-2">
-							<span class="subheading">Men's Shoes</span>
-							<h2>Men's Collection</h2>
-							<p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large
-								language ocean.</p>
-							<p><a href="#" class="btn btn-black px-3 py-2">Shop now</a></p>
-						</div>
+						
 					</div>
 				</div>
-				<div class="col-lg-8">
-					<div class="row no-gutters choose-wrap divider-two align-items-stretch">
-						<div class="col-md-12">
-							<div class="choose-wrap full-wrap img align-self-stretch d-flex align-item-center justify-content-end"
-								style="background-image: url(images/choose-2.jpg);">
-								<div class="col-md-7 d-flex align-items-center">
-									<div class="text text-white px-5">
-										<span class="subheading">Women's Shoes</span>
-										<h2>Women's Collection</h2>
-										<p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a
-											large language ocean.</p>
-										<p><a href="#" class="btn btn-black px-3 py-2">Shop now</a></p>
+					
+				<div class="col-md-4 col-lg-2">
+					<div class="sidebar">
+						<div class="sidebar-box-2">
+							<h2 class="heading">Categories</h2>
+							<div class="fancy-collapse-panel">
+								<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+									<div class="panel panel-default">
+										<a href="" style="color: black;">Album</a>
 									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-12">
-							<div class="row no-gutters">
-								<div class="col-md-6">
-									<div
-										class="choose-wrap wrap img align-self-stretch bg-light d-flex align-items-center">
-										<div class="text text-center px-5">
-											<span class="subheading">Summer Sale</span>
-											<h2>Extra 50% Off</h2>
-											<p>Separated they live in Bookmarksgrove right at the coast of the
-												Semantics, a large language ocean.</p>
-											<p><a href="#" class="btn btn-black px-3 py-2">Shop now</a></p>
-										</div>
+									<div class="panel panel-default">
+										<a href="" style="color: black;">DVD</a>
 									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="choose-wrap wrap img align-self-stretch d-flex align-items-center"
-										style="background-image: url(images/choose-3.jpg);">
-										<div class="text text-center text-white px-5">
-											<span class="subheading">Shoes</span>
-											<h2>Best Sellers</h2>
-											<p>Separated they live in Bookmarksgrove right at the coast of the
-												Semantics, a large language ocean.</p>
-											<p><a href="#" class="btn btn-black px-3 py-2">Shop now</a></p>
-										</div>
+									<div class="panel panel-default">
+										<a href="" style="color: black;">Merchandise</a>
 									</div>
 								</div>
 							</div>
