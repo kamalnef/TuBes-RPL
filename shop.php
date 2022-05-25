@@ -1,7 +1,7 @@
 <?php
+
 	include("config.php");
 	session_start();
-
 	
 ?>
 <!DOCTYPE html>
@@ -32,6 +32,7 @@
 	<link rel="stylesheet" href="css/flaticon.css">
 	<link rel="stylesheet" href="css/icomoon.css">
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/style3.css">
 </head>
 
 <body class="goto-here">
@@ -40,7 +41,7 @@
 			<div class="row atas-nav">
 				<div class="col-lg-6 col-md-7">
 					<div class="header__top__left">
-						<p>Free shipping, 30-day return or refund guarantee.</p>
+						<p>Haloo! <?php echo $_SESSION["nama"]; ?></p>
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-5">
@@ -90,9 +91,9 @@
 					<li class="nav-item login"><a href="login.php" class="nav-link">Sign In</a></li>
 					<li class="nav-item login"><a href="signout.php" class="nav-link">Sign Out</a></li>
 					<li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
-					<li class="nav-item dropdown"><a href="shop.php" class="nav-link">Shop</a></li>
-					<li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-					<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+					<li class="nav-item active"><a href="shop.php" class="nav-link">Shop</a></li>
+					<li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
+					<li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
 					<li class="nav-item cta cta-colored"><a href="cart.php" class="nav-link"><span
 								class="icon-shopping_cart"></span>[0]</a></li>
 
@@ -112,13 +113,32 @@
 		</div>
 	</div>
 
+	<!-- Search Box -->
+	<div class="col-md-12 ayayay">
+		<div class="col-md-6 search-box">
+			<div class="form-group">
+				<form action="" method="post">
+					<input type="text" class="form-control" placeholder="Masukkan Nama Produk ..." name="search">
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- Product Card -->
 	<section class="ftco-section bg-light">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 col-lg-10 order-md-last">
 					<div class="row">
 			<?php
-				$query = "SELECT * FROM produk INNER JOIN kategori_barang ON produk.id_kategori = kategori_barang.id_kategori";
+				if (isset($_POST['search'])){
+					$filter_key = "%" . $_POST['search'] . "%";
+				}
+				else{
+					$filter_key = "%%";
+				}
+
+				$query = "SELECT * FROM produk INNER JOIN kategori_barang ON produk.id_kategori = kategori_barang.id_kategori WHERE nama_produk LIKE '$filter_key'";
 				$result = mysqli_query($conn, $query);
 				if(!$result){
 				  die ("Query Error: ".mysqli_errno($conn).
@@ -129,12 +149,12 @@
 				?>
 				<div class="col-sm-12 col-md-6 col-lg-3 ftco-animate d-flex">
 				<div class="product d-flex flex-column">
-				    <a href="#" class="img-prod"><img class="img-fluid" src="images/produk/<?=$row['gambar_produk']?>"
+				    <a href="product-single.php?key=<?= $row['id_produk'] ?>" class="img-prod"><img class="img-fluid" src="images/produk/<?=$row['gambar_produk']?>"
 				            alt="Colorlib Template">
 				        <div class="overlay"></div>
 				    </a>
 				    <div class="text py-3 pb-4 px-3">
-				        <h3><a href="#"><?=$row['nama_produk']?></a></h3>
+				        <h3><a href="product-single.php?key=<?= $row['id_produk'] ?>"><?=$row['nama_produk']?></a></h3>
 				        <div class="pricing">
 				            <p class="price"><span>Rp <?=$row['harga_produk']?></span></p>
 				        </div>
@@ -160,7 +180,7 @@
 							<h2 class="heading">Categories</h2>
 							<div class="fancy-collapse-panel">
 								<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-									<div class="panel panel-default">
+									<!-- <div class="panel panel-default">
 										<a href="" style="color: black;">Album</a>
 									</div>
 									<div class="panel panel-default">
@@ -168,75 +188,38 @@
 									</div>
 									<div class="panel panel-default">
 										<a href="" style="color: black;">Merchandise</a>
+									</div> -->
+									<div class="panel panel-default">
+										<div class="panel-heading" role="tab" id="headingOne">
+											<h4 class="panel-title">
+												<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+													aria-expanded="false" aria-controls="collapseOne" class="collapsed">ALBUM
+												</a>
+											</h4>
+										</div>
+									</div>
+									<div class="panel panel-default">
+										<div class="panel-heading" role="tab" id="headingOne">
+											<h4 class="panel-title">
+												<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+													aria-expanded="false" aria-controls="collapseOne" class="collapsed">DVD
+												</a>
+											</h4>
+										</div>
+									</div>
+									<div class="panel panel-default">
+										<div class="panel-heading" role="tab" id="headingOne">
+											<h4 class="panel-title">
+												<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+													aria-expanded="false" aria-controls="collapseOne" class="collapsed">MERCHANDISE
+												</a>
+											</h4>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section class="ftco-gallery">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-md-8 heading-section text-center mb-4 ftco-animate">
-					<h2 class="mb-4">Follow Us On Instagram</h2>
-					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
-						live the blind texts. Separated they live in</p>
-				</div>
-			</div>
-		</div>
-		<div class="container-fluid px-0">
-			<div class="row no-gutters">
-				<div class="col-md-4 col-lg-2 ftco-animate">
-					<a href="images/gallery-1.jpg" class="gallery image-popup img d-flex align-items-center"
-						style="background-image: url(images/gallery-1.jpg);">
-						<div class="icon mb-4 d-flex align-items-center justify-content-center">
-							<span class="icon-instagram"></span>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 col-lg-2 ftco-animate">
-					<a href="images/gallery-2.jpg" class="gallery image-popup img d-flex align-items-center"
-						style="background-image: url(images/gallery-2.jpg);">
-						<div class="icon mb-4 d-flex align-items-center justify-content-center">
-							<span class="icon-instagram"></span>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 col-lg-2 ftco-animate">
-					<a href="images/gallery-3.jpg" class="gallery image-popup img d-flex align-items-center"
-						style="background-image: url(images/gallery-3.jpg);">
-						<div class="icon mb-4 d-flex align-items-center justify-content-center">
-							<span class="icon-instagram"></span>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 col-lg-2 ftco-animate">
-					<a href="images/gallery-4.jpg" class="gallery image-popup img d-flex align-items-center"
-						style="background-image: url(images/gallery-4.jpg);">
-						<div class="icon mb-4 d-flex align-items-center justify-content-center">
-							<span class="icon-instagram"></span>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 col-lg-2 ftco-animate">
-					<a href="images/gallery-5.jpg" class="gallery image-popup img d-flex align-items-center"
-						style="background-image: url(images/gallery-5.jpg);">
-						<div class="icon mb-4 d-flex align-items-center justify-content-center">
-							<span class="icon-instagram"></span>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 col-lg-2 ftco-animate">
-					<a href="images/gallery-6.jpg" class="gallery image-popup img d-flex align-items-center"
-						style="background-image: url(images/gallery-6.jpg);">
-						<div class="icon mb-4 d-flex align-items-center justify-content-center">
-							<span class="icon-instagram"></span>
-						</div>
-					</a>
 				</div>
 			</div>
 		</div>

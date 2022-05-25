@@ -1,6 +1,8 @@
 <?php
-include("config.php");
+
+	include("config.php");
 	session_start();
+	
 ?>
 
 <!DOCTYPE html>
@@ -34,11 +36,12 @@ include("config.php");
 </head>
 
 <body class="goto-here">
-	<div class="header__top py-1 bg-black">
+<div class="header__top py-1 bg-black">
 		<div class="container">
 			<div class="row atas-nav">
 				<div class="col-lg-6 col-md-7">
 					<div class="header__top__left">
+						<p>Haloo! <?php echo $_SESSION["nama"]; ?></p>
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-5">
@@ -74,7 +77,7 @@ include("config.php");
 			</div>
 		</div>
 	</div>
-	<div class="fixed-top">
+	</div>
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 		<div class="container">
 			<a class="navbar-brand" href="index.php">Minishop</a>
@@ -88,9 +91,9 @@ include("config.php");
 					<li class="nav-item login"><a href="login.php" class="nav-link">Sign In</a></li>
 					<li class="nav-item login"><a href="signout.php" class="nav-link">Sign Out</a></li>
 					<li class="nav-item active"><a href="index.php" class="nav-link">Home</a></li>
-					<li class="nav-item active"><a href="shop.php" class="nav-link">Shop</a></li>
-					<li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-					<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+					<li class="nav-item dropdown"><a href="shop.php" class="nav-link">Shop</a></li>
+					<li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
+					<li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
 					<li class="nav-item cta cta-colored"><a href="cart.php" class="nav-link"><span
 								class="icon-shopping_cart"></span>[0]</a></li>
 
@@ -98,7 +101,6 @@ include("config.php");
 			</div>
 		</div>
 	</nav>
-	</div>
 	<!-- END nav -->
 
 	<section id="home-section" class="hero">
@@ -112,7 +114,7 @@ include("config.php");
 						<div class="one-forth d-flex align-items-center ftco-animate"
 							data-scrollax=" properties: { translateY: '70%' }">
 							<div class="text">
-								<span class="subheading">#BTSBE</span>
+								<span class="subheading">#BE_The_Self</span>
 								<div class="horizontal">
 									<h1 class="mb-4 mt-3">MAMA 2021's ALBUM OF THE YEAR</h1>
 									<p class="mb-4">Rasakan sentuhan langsung BTS dalam menyampaikan pesan mereka dari setiap lagu ke lagu.</p>
@@ -134,7 +136,7 @@ include("config.php");
 						<div class="one-forth d-flex align-items-center ftco-animate"
 							data-scrollax=" properties: { translateY: '70%' }">
 							<div class="text">
-								<span class="subheading">#Restore_Memory</span>
+								<span class="subheading">#Memorable_Journeys</span>
 								<div class="horizontal">
 									<h1 class="mb-4 mt-3">BTS MEMORIES OF 2020 DVD NOW RELEASED</h1>
 									<p class="mb-4">Kumpulan kenangan ARMY dan BTS di tahun tersibuk di tengah kesulitan pandemi COVID-19.</p>
@@ -197,20 +199,17 @@ include("config.php");
 		</div>
 	</section>
 
-
-
 	<section class="ftco-section ftco-choose ftco-no-pb ftco-no-pt">
 		<div class="container">
 			<div class="row no-gutters">
 				<div class="col-lg-4">
 					<div class="choose-wrap divider-one img p-5 d-flex align-items-end"
-						style="background-image: url(images/choose-1.jpg);">
+						style="background-image: url(images/sale/choose-1.png);">
 
 						<div class="text text-center text-white px-2">
-							<span class="subheading">Men's Shoes</span>
-							<h2>Men's Collection</h2>
-							<p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large
-								language ocean.</p>
+							<span class="subheading">OUTFIT</span>
+							<h2>Summer Feeling's</h2>
+							<p>Persiapkan outfit terbaikmu dalam menyambut musim panas dengan official merchandise IN THE SOOP!</p>
 							<p><a href="#" class="btn btn-black px-3 py-2">Shop now</a></p>
 						</div>
 					</div>
@@ -219,13 +218,12 @@ include("config.php");
 					<div class="row no-gutters choose-wrap divider-two align-items-stretch">
 						<div class="col-md-12">
 							<div class="choose-wrap full-wrap img align-self-stretch d-flex align-item-center justify-content-end"
-								style="background-image: url(images/choose-2.jpg);">
+								style="background-image: url(images/sale/choose-2.png);">
 								<div class="col-md-7 d-flex align-items-center">
 									<div class="text text-white px-5">
-										<span class="subheading">Women's Shoes</span>
-										<h2>Women's Collection</h2>
-										<p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a
-											large language ocean.</p>
+										<span class="subheading">BTS ALBUM</span>
+										<h2>Bring The ON: E</h2>
+										<p>Rasakan pengalaman menonton konser online BTS, Map of The Soul ON: E!</p>
 										<p><a href="#" class="btn btn-black px-3 py-2">Shop now</a></p>
 									</div>
 								</div>
@@ -237,22 +235,20 @@ include("config.php");
 									<div
 										class="choose-wrap wrap img align-self-stretch bg-light d-flex align-items-center">
 										<div class="text text-center px-5">
-											<span class="subheading">Summer Sale</span>
-											<h2>Extra 50% Off</h2>
-											<p>Separated they live in Bookmarksgrove right at the coast of the
-												Semantics, a large language ocean.</p>
+											<span class="subheading">Birthday Celebration Sale</span>
+											<h2>6.13 SALE!</h2>
+											<p>Dapatkan diskon spesial di perayaan ke-9 tahun BTS!</p>
 											<p><a href="#" class="btn btn-black px-3 py-2">Shop now</a></p>
 										</div>
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="choose-wrap wrap img align-self-stretch d-flex align-items-center"
-										style="background-image: url(images/choose-3.jpg);">
+										style="background-image: url(images/sale/choose-3.png);">
 										<div class="text text-center text-white px-5">
-											<span class="subheading">Shoes</span>
-											<h2>Best Sellers</h2>
-											<p>Separated they live in Bookmarksgrove right at the coast of the
-												Semantics, a large language ocean.</p>
+											<span class="subheading">BTS MERCH</span>
+											<h2>Fit the Outfit</h2>
+											<p>Lengkapi gaya stylemu dengan official merchandise IN THE SOOP</p>
 											<p><a href="#" class="btn btn-black px-3 py-2">Shop now</a></p>
 										</div>
 									</div>
@@ -260,70 +256,6 @@ include("config.php");
 							</div>
 						</div>
 					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section class="ftco-gallery">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-md-8 heading-section text-center mb-4 ftco-animate">
-					<h2 class="mb-4">Follow Us On Instagram</h2>
-					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
-						live the blind texts. Separated they live in</p>
-				</div>
-			</div>
-		</div>
-		<div class="container-fluid px-0">
-			<div class="row no-gutters">
-				<div class="col-md-4 col-lg-2 ftco-animate">
-					<a href="images/gallery-1.jpg" class="gallery image-popup img d-flex align-items-center"
-						style="background-image: url(images/gallery-1.jpg);">
-						<div class="icon mb-4 d-flex align-items-center justify-content-center">
-							<span class="icon-instagram"></span>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 col-lg-2 ftco-animate">
-					<a href="images/gallery-2.jpg" class="gallery image-popup img d-flex align-items-center"
-						style="background-image: url(images/gallery-2.jpg);">
-						<div class="icon mb-4 d-flex align-items-center justify-content-center">
-							<span class="icon-instagram"></span>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 col-lg-2 ftco-animate">
-					<a href="images/gallery-3.jpg" class="gallery image-popup img d-flex align-items-center"
-						style="background-image: url(images/gallery-3.jpg);">
-						<div class="icon mb-4 d-flex align-items-center justify-content-center">
-							<span class="icon-instagram"></span>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 col-lg-2 ftco-animate">
-					<a href="images/gallery-4.jpg" class="gallery image-popup img d-flex align-items-center"
-						style="background-image: url(images/gallery-4.jpg);">
-						<div class="icon mb-4 d-flex align-items-center justify-content-center">
-							<span class="icon-instagram"></span>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 col-lg-2 ftco-animate">
-					<a href="images/gallery-5.jpg" class="gallery image-popup img d-flex align-items-center"
-						style="background-image: url(images/gallery-5.jpg);">
-						<div class="icon mb-4 d-flex align-items-center justify-content-center">
-							<span class="icon-instagram"></span>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 col-lg-2 ftco-animate">
-					<a href="images/gallery-6.jpg" class="gallery image-popup img d-flex align-items-center"
-						style="background-image: url(images/gallery-6.jpg);">
-						<div class="icon mb-4 d-flex align-items-center justify-content-center">
-							<span class="icon-instagram"></span>
-						</div>
-					</a>
 				</div>
 			</div>
 		</div>
