@@ -29,6 +29,19 @@
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5) !important;
 }
 
+.panel-heading a {
+    color: #000000;
+}
+
+.panel-heading a::after {
+    all: unset;
+}
+
+.productC {
+    cursor: pointer;
+    font-size: 12px;
+}
+
 /* Single-Product */
 .nav-pills .nav-link {
     width: 100%;

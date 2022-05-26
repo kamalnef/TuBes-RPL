@@ -41,7 +41,14 @@
 			<div class="row atas-nav">
 				<div class="col-lg-6 col-md-7">
 					<div class="header__top__left">
-						<p>Haloo! <?php echo $_SESSION["nama"]; ?></p>
+						<?php
+							
+							if(isset($_SESSION["login"]))
+							{
+								echo "<p>Haloo! " . $_SESSION["nama"] . "</p>";
+							}
+						
+						?>
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-5">
@@ -173,14 +180,14 @@
 				?>
 				<div class="col-sm-12 col-md-6 col-lg-3 ftco-animate d-flex">
 				<div class="product d-flex flex-column">
-				    <a href="#" class="img-prod"><img class="img-fluid" src="images/produk/<?=$row['gambar_produk']?>"
+				    <a href="product-single.php?key=<?= $row['id_produk'] ?>" class="img-prod"><img class="img-fluid" src="images/produk/<?=$row['gambar_produk']?>"
 				            alt="Colorlib Template">
 				        <div class="overlay"></div>
 				    </a>
 				    <div class="text py-3 pb-4 px-3">
-				        <h3><a href="#"><?=$row['nama_produk']?></a></h3>
+				        <h3><a href="product-single.php?key=<?= $row['id_produk'] ?>"><?=$row['nama_produk']?></a></h3>
 				        <div class="pricing">
-				            <p class="price"><span>Rp <?=$row['harga_produk']?></span></p>
+				            <p class="price"><span>Rp <?=number_format($row['harga_produk'],0,"",".")?></span></p>
 				        </div>
 				        <p class="bottom-area d-flex px-3">
 				            <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Add to cart <i

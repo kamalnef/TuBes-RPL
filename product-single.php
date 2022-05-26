@@ -73,7 +73,14 @@
 			<div class="row atas-nav">
 				<div class="col-lg-6 col-md-7">
 					<div class="header__top__left">
-						<p>Haloo! <?php echo $_SESSION["nama"]; ?></p>
+						<?php
+							
+							if(isset($_SESSION["login"]))
+							{
+								echo "<p>Haloo! " . $_SESSION["nama"] . "</p>";
+							}
+						
+						?>
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-5">
@@ -154,8 +161,8 @@
 							class="img-fluid" alt="Colorlib Template"></a>
 				</div>
 				<div class="col-lg-6 product-details pl-md-5 ftco-animate">
-					<h3><?= $nama_produk; ?></h3>
-					<p class="price"><span>Rp <?= $harga_produk; ?>,00</span></p>
+					<h3 style="font-weight: 700;"><?= $nama_produk; ?></h3>
+					<p class="price"><span>Rp <?=number_format($harga_produk,0,"",".")?></span></p>
 					<div class="detail-product">
 						<div class="atribut-product">
 							<p><i class="fas fa-caret-right"></i> &nbsp; Berat Produk</p>
@@ -230,7 +237,7 @@
 						<div class="tab-pane fade show active" id="v-pills-1" role="tabpanel"
 							aria-labelledby="day-1-tab">
 							<div class="p-4">
-								<h3 class="mb-4"><?= $nama_produk; ?></h3>
+								<h3 class="mb-4" style="font-weight: 700;"><?= $nama_produk; ?></h3>
 								<p><?= $deskripsi; ?></p>
 							</div>
 						</div>

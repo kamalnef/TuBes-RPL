@@ -13,6 +13,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
 
 	<link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
 	<link rel="stylesheet" href="css/animate.css">
@@ -33,6 +34,7 @@
 	<link rel="stylesheet" href="css/icomoon.css">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/style3.css">
+	<link rel="stylesheet" href="css/style4.css">
 </head>
 
 <body class="goto-here">
@@ -41,7 +43,14 @@
 			<div class="row atas-nav">
 				<div class="col-lg-6 col-md-7">
 					<div class="header__top__left">
-						<p>Haloo! <?php echo $_SESSION["nama"]; ?></p>
+						<?php
+						
+							if(isset($_SESSION["login"]))
+							{
+								echo "<p>Haloo! " . $_SESSION["nama"] . "</p>";
+							}
+						
+						?>
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-5">
@@ -138,12 +147,25 @@
 					$filter_key = "%%";
 				}
 
-				$query = "SELECT * FROM produk INNER JOIN kategori_barang ON produk.id_kategori = kategori_barang.id_kategori WHERE nama_produk LIKE '$filter_key'";
+				$query = "SELECT produk.id_produk, produk.gambar_produk, produk.nama_produk, produk.harga_produk, kategori_barang.nama_kategori FROM produk INNER JOIN kategori_barang ON produk.id_kategori = kategori_barang.id_kategori WHERE nama_produk LIKE '$filter_key'";
+				
+				if(isset($_GET['kategori']))
+				{
+					$kategori = $_GET['kategori'];
+
+					$query = "SELECT produk.id_produk, produk.gambar_produk, produk.nama_produk, produk.harga_produk, kategori_barang.nama_kategori FROM produk INNER JOIN kategori_barang ON produk.id_kategori = kategori_barang.id_kategori WHERE nama_produk LIKE '$filter_key' AND nama_kategori LIKE '$kategori'";
+				}
+
+				$query2 = "SELECT * FROM kategori_barang";
+
 				$result = mysqli_query($conn, $query);
-				if(!$result){
+				$result2 =mysqli_query($conn, $query2);
+
+				if(!$result || !$result2){
 				  die ("Query Error: ".mysqli_errno($conn).
 				     " - ".mysqli_error($conn));
 				}
+
 				while($row = mysqli_fetch_assoc($result))
 				{
 				?>
@@ -156,7 +178,7 @@
 				    <div class="text py-3 pb-4 px-3">
 				        <h3><a href="product-single.php?key=<?= $row['id_produk'] ?>"><?=$row['nama_produk']?></a></h3>
 				        <div class="pricing">
-				            <p class="price"><span>Rp <?=$row['harga_produk']?></span></p>
+				            <p class="price"><span>Rp <?=number_format($row['harga_produk'],0,"",".")?></span></p>
 				        </div>
 				        <p class="bottom-area d-flex px-3">
 				            <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Add to cart <i
@@ -180,42 +202,31 @@
 							<h2 class="heading">Categories</h2>
 							<div class="fancy-collapse-panel">
 								<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-									<!-- <div class="panel panel-default">
-										<a href="" style="color: black;">Album</a>
-									</div>
-									<div class="panel panel-default">
-										<a href="" style="color: black;">DVD</a>
-									</div>
-									<div class="panel panel-default">
-										<a href="" style="color: black;">Merchandise</a>
-									</div> -->
-									<div class="panel panel-default">
-										<div class="panel-heading" role="tab" id="headingOne">
-											<h4 class="panel-title">
-												<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
-													aria-expanded="false" aria-controls="collapseOne" class="collapsed">ALBUM
-												</a>
-											</h4>
+									<form action="" method="post">
+										<div class="panel panel-default">
+											<div class="panel-heading" role="tab" id="headingOne">
+												<h4 class="panel-title">
+													<button name="semuaP" style="all: unset"><a href="?kategori=%%" class="productC"><i class="fas fa-caret-right"></i> &nbsp; ALL</a></button>
+												</h4>
+											</div>
 										</div>
-									</div>
-									<div class="panel panel-default">
-										<div class="panel-heading" role="tab" id="headingOne">
-											<h4 class="panel-title">
-												<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
-													aria-expanded="false" aria-controls="collapseOne" class="collapsed">DVD
-												</a>
-											</h4>
+
+										<?php
+											while($row2 = mysqli_fetch_assoc($result2)) {
+										?>
+
+										<div class="panel panel-default">
+											<div class="panel-heading" role="tab" id="headingOne">
+												<h4 class="panel-title">
+												<button name="CProduct" style="all: unset"><a class="productC" href="?kategori=<?= $row2['nama_kategori'] ?>"><i class="fas fa-caret-right"></i> &nbsp; <?= $row2['nama_kategori'] ?></a></button>
+												</h4>
+											</div>
 										</div>
-									</div>
-									<div class="panel panel-default">
-										<div class="panel-heading" role="tab" id="headingOne">
-											<h4 class="panel-title">
-												<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
-													aria-expanded="false" aria-controls="collapseOne" class="collapsed">MERCHANDISE
-												</a>
-											</h4>
-										</div>
-									</div>
+
+										<?php
+											}
+										?>
+									</form>
 								</div>
 							</div>
 						</div>
@@ -313,9 +324,15 @@
 			<circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
 			<circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
 				stroke="#F96D00" />
-		</svg></div>
+		</svg>
+		<script>
+			if ( window.history.replaceState ) {
+				window.history.replaceState( null, null, window.location.href );
+			}
+		</script>
+	</div>
 
-
+			
 	<script src="js/jquery.min.js"></script>
 	<script src="js/jquery-migrate-3.0.1.min.js"></script>
 	<script src="js/popper.min.js"></script>

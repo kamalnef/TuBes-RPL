@@ -41,7 +41,14 @@
       <div class="row atas-nav">
         <div class="col-lg-6 col-md-7">
           <div class="header__top__left">
-            <p>Haloo! <?php echo $_SESSION["nama"]; ?></p>
+            <?php
+              
+              if(isset($_SESSION["login"]))
+              {
+                echo "<p>Haloo! " . $_SESSION["nama"] . "</p>";
+              }
+            
+            ?>
           </div>
         </div>
         <div class="col-lg-6 col-md-5">
