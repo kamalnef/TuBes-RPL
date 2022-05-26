@@ -1,7 +1,7 @@
 <?php
+
 	include("config.php");
 	session_start();
-
 	
 ?>
 <!DOCTYPE html>
@@ -13,6 +13,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
 
 	<link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
 	<link rel="stylesheet" href="css/animate.css">
@@ -32,6 +33,8 @@
 	<link rel="stylesheet" href="css/flaticon.css">
 	<link rel="stylesheet" href="css/icomoon.css">
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/style3.css">
+	<link rel="stylesheet" href="css/style4.css">
 </head>
 
 <body class="goto-here">
@@ -40,7 +43,14 @@
 			<div class="row atas-nav">
 				<div class="col-lg-6 col-md-7">
 					<div class="header__top__left">
-						<p>Free shipping, 30-day return or refund guarantee.</p>
+						<?php
+						
+							if(isset($_SESSION["login"]))
+							{
+								echo "<p>Haloo! " . $_SESSION["nama"] . "</p>";
+							}
+						
+						?>
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-5">
@@ -90,9 +100,9 @@
 					<li class="nav-item login"><a href="login.php" class="nav-link">Sign In</a></li>
 					<li class="nav-item login"><a href="signout.php" class="nav-link">Sign Out</a></li>
 					<li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
-					<li class="nav-item dropdown"><a href="shop.php" class="nav-link">Shop</a></li>
-					<li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-					<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+					<li class="nav-item active"><a href="shop.php" class="nav-link">Shop</a></li>
+					<li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
+					<li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
 					<li class="nav-item cta cta-colored"><a href="cart.php" class="nav-link"><span
 								class="icon-shopping_cart"></span>[0]</a></li>
 
@@ -112,31 +122,63 @@
 		</div>
 	</div>
 
+	<!-- Search Box -->
+	<div class="col-md-12 ayayay">
+		<div class="col-md-6 search-box">
+			<div class="form-group">
+				<form action="" method="post">
+					<input type="text" class="form-control" placeholder="Masukkan Nama Produk ..." name="search">
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- Product Card -->
 	<section class="ftco-section bg-light">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 col-lg-10 order-md-last">
 					<div class="row">
 			<?php
-				$query = "SELECT * FROM produk INNER JOIN kategori_barang ON produk.id_kategori = kategori_barang.id_kategori";
+				if (isset($_POST['search'])){
+					$filter_key = "%" . $_POST['search'] . "%";
+				}
+				else{
+					$filter_key = "%%";
+				}
+
+				$query = "SELECT produk.id_produk, produk.gambar_produk, produk.nama_produk, produk.harga_produk, kategori_barang.nama_kategori FROM produk INNER JOIN kategori_barang ON produk.id_kategori = kategori_barang.id_kategori WHERE nama_produk LIKE '$filter_key'";
+				
+				if(isset($_GET['kategori']))
+				{
+					$kategori = $_GET['kategori'];
+
+					$query = "SELECT produk.id_produk, produk.gambar_produk, produk.nama_produk, produk.harga_produk, kategori_barang.nama_kategori FROM produk INNER JOIN kategori_barang ON produk.id_kategori = kategori_barang.id_kategori WHERE nama_produk LIKE '$filter_key' AND nama_kategori LIKE '$kategori'";
+				}
+
+				$query2 = "SELECT * FROM kategori_barang";
+
 				$result = mysqli_query($conn, $query);
-				if(!$result){
+				$result2 =mysqli_query($conn, $query2);
+
+				if(!$result || !$result2){
 				  die ("Query Error: ".mysqli_errno($conn).
 				     " - ".mysqli_error($conn));
 				}
+
 				while($row = mysqli_fetch_assoc($result))
 				{
 				?>
 				<div class="col-sm-12 col-md-6 col-lg-3 ftco-animate d-flex">
 				<div class="product d-flex flex-column">
-				    <a href="#" class="img-prod"><img class="img-fluid" src="images/produk/<?=$row['gambar_produk']?>"
+				    <a href="product-single.php?key=<?= $row['id_produk'] ?>" class="img-prod"><img class="img-fluid" src="images/produk/<?=$row['gambar_produk']?>"
 				            alt="Colorlib Template">
 				        <div class="overlay"></div>
 				    </a>
 				    <div class="text py-3 pb-4 px-3">
-				        <h3><a href="#"><?=$row['nama_produk']?></a></h3>
+				        <h3><a href="product-single.php?key=<?= $row['id_produk'] ?>"><?=$row['nama_produk']?></a></h3>
 				        <div class="pricing">
-				            <p class="price"><span>Rp <?=$row['harga_produk']?></span></p>
+				            <p class="price"><span>Rp <?=number_format($row['harga_produk'],0,"",".")?></span></p>
 				        </div>
 				        <p class="bottom-area d-flex px-3">
 				            <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Add to cart <i
@@ -160,83 +202,35 @@
 							<h2 class="heading">Categories</h2>
 							<div class="fancy-collapse-panel">
 								<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-									<div class="panel panel-default">
-										<a href="" style="color: black;">Album</a>
-									</div>
-									<div class="panel panel-default">
-										<a href="" style="color: black;">DVD</a>
-									</div>
-									<div class="panel panel-default">
-										<a href="" style="color: black;">Merchandise</a>
-									</div>
+									<form action="" method="post">
+										<div class="panel panel-default">
+											<div class="panel-heading" role="tab" id="headingOne">
+												<h4 class="panel-title">
+													<button name="semuaP" style="all: unset"><a href="?kategori=%%" class="productC"><i class="fas fa-caret-right"></i> &nbsp; ALL</a></button>
+												</h4>
+											</div>
+										</div>
+
+										<?php
+											while($row2 = mysqli_fetch_assoc($result2)) {
+										?>
+
+										<div class="panel panel-default">
+											<div class="panel-heading" role="tab" id="headingOne">
+												<h4 class="panel-title">
+												<button name="CProduct" style="all: unset"><a class="productC" href="?kategori=<?= $row2['nama_kategori'] ?>"><i class="fas fa-caret-right"></i> &nbsp; <?= $row2['nama_kategori'] ?></a></button>
+												</h4>
+											</div>
+										</div>
+
+										<?php
+											}
+										?>
+									</form>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section class="ftco-gallery">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-md-8 heading-section text-center mb-4 ftco-animate">
-					<h2 class="mb-4">Follow Us On Instagram</h2>
-					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
-						live the blind texts. Separated they live in</p>
-				</div>
-			</div>
-		</div>
-		<div class="container-fluid px-0">
-			<div class="row no-gutters">
-				<div class="col-md-4 col-lg-2 ftco-animate">
-					<a href="images/gallery-1.jpg" class="gallery image-popup img d-flex align-items-center"
-						style="background-image: url(images/gallery-1.jpg);">
-						<div class="icon mb-4 d-flex align-items-center justify-content-center">
-							<span class="icon-instagram"></span>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 col-lg-2 ftco-animate">
-					<a href="images/gallery-2.jpg" class="gallery image-popup img d-flex align-items-center"
-						style="background-image: url(images/gallery-2.jpg);">
-						<div class="icon mb-4 d-flex align-items-center justify-content-center">
-							<span class="icon-instagram"></span>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 col-lg-2 ftco-animate">
-					<a href="images/gallery-3.jpg" class="gallery image-popup img d-flex align-items-center"
-						style="background-image: url(images/gallery-3.jpg);">
-						<div class="icon mb-4 d-flex align-items-center justify-content-center">
-							<span class="icon-instagram"></span>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 col-lg-2 ftco-animate">
-					<a href="images/gallery-4.jpg" class="gallery image-popup img d-flex align-items-center"
-						style="background-image: url(images/gallery-4.jpg);">
-						<div class="icon mb-4 d-flex align-items-center justify-content-center">
-							<span class="icon-instagram"></span>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 col-lg-2 ftco-animate">
-					<a href="images/gallery-5.jpg" class="gallery image-popup img d-flex align-items-center"
-						style="background-image: url(images/gallery-5.jpg);">
-						<div class="icon mb-4 d-flex align-items-center justify-content-center">
-							<span class="icon-instagram"></span>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 col-lg-2 ftco-animate">
-					<a href="images/gallery-6.jpg" class="gallery image-popup img d-flex align-items-center"
-						style="background-image: url(images/gallery-6.jpg);">
-						<div class="icon mb-4 d-flex align-items-center justify-content-center">
-							<span class="icon-instagram"></span>
-						</div>
-					</a>
 				</div>
 			</div>
 		</div>
@@ -330,9 +324,15 @@
 			<circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
 			<circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
 				stroke="#F96D00" />
-		</svg></div>
+		</svg>
+		<script>
+			if ( window.history.replaceState ) {
+				window.history.replaceState( null, null, window.location.href );
+			}
+		</script>
+	</div>
 
-
+			
 	<script src="js/jquery.min.js"></script>
 	<script src="js/jquery-migrate-3.0.1.min.js"></script>
 	<script src="js/popper.min.js"></script>

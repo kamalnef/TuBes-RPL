@@ -41,12 +41,12 @@
 </head>
 
 <body class="goto-here">
-	<div class="header__top py-1 bg-black">
+<div class="header__top py-1 bg-black">
 		<div class="container">
 			<div class="row atas-nav">
 				<div class="col-lg-6 col-md-7">
 					<div class="header__top__left">
-						<p>Free shipping, 30-day return or refund guarantee.</p>
+						<p>Haloo! <?php echo $_SESSION["nama"]; ?></p>
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-5">
@@ -96,18 +96,9 @@
 					<li class="nav-item login"><a href="login.php" class="nav-link">Sign In</a></li>
 					<li class="nav-item login"><a href="signout.php" class="nav-link">Sign Out</a></li>
 					<li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false">Catalog</a>
-						<div class="dropdown-menu" aria-labelledby="dropdown04">
-							<a class="dropdown-item" href="shop.html">Shop</a>
-							<a class="dropdown-item" href="product-single.html">Single Product</a>
-							<a class="dropdown-item" href="cart.php">Cart</a>
-							<a class="dropdown-item active" href="checkout.php">Checkout</a>
-						</div>
-					</li>
-					<li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-					<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+					<li class="nav-item"><a href="shop.php" class="nav-link">Shop</a></li>
+					<li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
+					<li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
 					<li class="nav-item cta cta-colored"><a href="cart.php" class="nav-link"><span
 								class="icon-shopping_cart"></span>[0]</a></li>
 

@@ -32,6 +32,7 @@
         {
             header("Location: admin.php");
             $_SESSION["admin"] = true;
+            $_SESSION["login"] = true;
         }
         $username = $_POST["username"];
         $password = $_POST["password"];
@@ -47,6 +48,9 @@
             {
                 // Set Session
                 $_SESSION["login"] = true;
+
+                // Set Session Buat Nampilin Nama User
+                $_SESSION["nama"] = $row["nama_lengkap"];
 
                 // Cek Remember Me
                 if(isset($_POST['remember']))
