@@ -1,9 +1,3 @@
-<?php
-
-	session_start();
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +7,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
 
 	<link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
 	<link rel="stylesheet" href="css/animate.css">
@@ -33,54 +26,15 @@
 	<link rel="stylesheet" href="css/flaticon.css">
 	<link rel="stylesheet" href="css/icomoon.css">
 	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/style3.css">
 </head>
 
 <body class="goto-here">
-	<?php
-	
-		if(!isset($_GET['key'])){
-			header("location: shop.php");
-			exit();
-		}
-
-		$key = $_GET['key'];
-
-		include("config.php");
-
-		$query = mysqli_query($conn, "SELECT * FROM produk WHERE id_produk = '$key' limit 1");
-
-		$data = mysqli_fetch_array($query);
-		$id_kategori = $data['id_kategori'];
-		$nama_produk = $data['nama_produk'];
-		$gambar_produk = $data['gambar_produk'];
-		$stok_barang = $data['stok_barang'];
-		$deskripsi = $data['deskripsi'];
-		$berat_produk = $data['berat_produk'];
-		$harga_produk = $data['harga_produk'];
-		$bonus_produk = $data['bonus_produk'];
-		$tgl_rilis = $data['tgl_rilis'];
-		$label = $data['label'];
-		$produksi = $data['produksi'];
-		$lokasi_produk = $data['lokasi_produk'];
-		$kondisi_produk = $data['kondisi_produk'];
-	
-	?>
-
-
 	<div class="header__top py-1 bg-black">
 		<div class="container">
 			<div class="row atas-nav">
 				<div class="col-lg-6 col-md-7">
 					<div class="header__top__left">
-						<?php
-							
-							if(isset($_SESSION["login"]))
-							{
-								echo "<p>Haloo! " . $_SESSION["nama"] . "</p>";
-							}
-						
-						?>
+						<p>Free shipping, 30-day return or refund guarantee.</p>
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-5">
@@ -130,9 +84,18 @@
 					<li class="nav-item login"><a href="login.php" class="nav-link">Sign In</a></li>
 					<li class="nav-item login"><a href="signout.php" class="nav-link">Sign Out</a></li>
 					<li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
-					<li class="nav-item"><a href="shop.php" class="nav-link">Shop</a></li>
-					<li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
-					<li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">Catalog</a>
+						<div class="dropdown-menu" aria-labelledby="dropdown04">
+							<a class="dropdown-item" href="shop.html">Shop</a>
+							<a class="dropdown-item active" href="product-single.html">Single Product</a>
+							<a class="dropdown-item" href="cart.php">Cart</a>
+							<a class="dropdown-item" href="checkout.php">Checkout</a>
+						</div>
+					</li>
+					<li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+					<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
 					<li class="nav-item cta cta-colored"><a href="cart.php" class="nav-link"><span
 								class="icon-shopping_cart"></span>[0]</a></li>
 
@@ -157,32 +120,21 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 mb-5 ftco-animate">
-					<a href="images/produk/<?= $gambar_produk; ?>" class="image-popup prod-img-bg"><img src="images/produk/<?= $gambar_produk; ?>"
+					<a href="images/product-1.png" class="image-popup prod-img-bg"><img src="images/product-1.png"
 							class="img-fluid" alt="Colorlib Template"></a>
 				</div>
 				<div class="col-lg-6 product-details pl-md-5 ftco-animate">
-					<h3 style="font-weight: 700;"><?= $nama_produk; ?></h3>
-					<p class="price"><span>Rp <?=number_format($harga_produk,0,"",".")?></span></p>
-					<div class="detail-product">
-						<div class="atribut-product">
-							<p><i class="fas fa-caret-right"></i> &nbsp; Berat Produk</p>
-							<p><i class="fas fa-caret-right"></i> &nbsp; Bonus Produk</p>
-							<p><i class="fas fa-caret-right"></i> &nbsp; Tanggal Rilis</p>
-							<p><i class="fas fa-caret-right"></i> &nbsp; Label</p>
-							<p><i class="fas fa-caret-right"></i> &nbsp; Produksi</p>
-							<p><i class="fas fa-caret-right"></i> &nbsp; Lokasi Produk</p>
-							<p><i class="fas fa-caret-right"></i> &nbsp; Kondisi Produk</p>
-						</div>
-						<div class="value-product">
-							<p><?= $berat_produk; ?> Gram</p>
-							<p><?= $bonus_produk; ?></p>
-							<p><?= $tgl_rilis; ?></p>
-							<p><?= $label; ?></p>
-							<p><?= $produksi; ?></p>
-							<p><?= $lokasi_produk; ?></p>
-							<p><?= $kondisi_produk; ?></p>
-						</div>
-					</div>
+					<h3>Nike Free RN 2019 iD</h3>
+					<p class="price"><span>$120.00</span></p>
+					<p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It
+						is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+					<p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it
+						would have been rewritten a thousand times and everything that was left from its origin would be
+						the word "and" and the Little Blind Text should turn around and return to its own, safe country.
+						But nothing the copy said could convince her and so it didn’t take long until a few insidious
+						Copy Writers ambushed her, made her drunk with Longe and Parole and dragged her into their
+						agency, where they abused her for their.
+					</p>
 					<div class="row mt-4">
 						<div class="col-md-6">
 							<div class="form-group d-flex">
@@ -198,22 +150,32 @@
 							</div>
 						</div>
 						<div class="w-100"></div>
-						<form action="add_cart.php" method="GET" enctype="multipart/form-data">
 						<div class="input-group col-md-6 d-flex mb-3">
-							<input type="hidden" name="key" value="<?= $key; ?>?">
-							<label for="qty" class=" mt-1 mr-4">Jumlah Barang</label>
-							<input type="text" id="qty" name="qty" class="quantity form-control input-number"
+							<span class="input-group-btn mr-2">
+								<button type="button" class="quantity-left-minus btn" data-type="minus" data-field="">
+									<i class="ion-ios-remove"></i>
+								</button>
+							</span>
+							<input type="text" id="quantity" name="quantity" class="quantity form-control input-number"
 								value="1" min="1" max="100">
-							<span><input type="submit" name="save" value="Add To Cart" class="btn btn-black py-3 px-4 mt-2"></span>
+							<span class="input-group-btn ml-2">
+								<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
+									<i class="ion-ios-add"></i>
+								</button>
+							</span>
 						</div>
-						</form>
 						<div class="w-100"></div>
 						<div class="col-md-12">
-							<p style="color: #000;"><?= $stok_barang; ?> piece available</p>
+							<p style="color: #000;">80 piece available</p>
 						</div>
 					</div>
+					<p><a href="cart.php" class="btn btn-black py-3 px-5 mr-2">Add to Cart</a><a href="cart.php"
+							class="btn btn-primary py-3 px-5">Buy now</a></p>
 				</div>
 			</div>
+
+
+
 
 			<div class="row mt-5">
 				<div class="col-md-12 nav-link-wrap">
@@ -221,6 +183,13 @@
 						aria-orientation="vertical">
 						<a class="nav-link ftco-animate active mr-lg-1" id="v-pills-1-tab" data-toggle="pill"
 							href="#v-pills-1" role="tab" aria-controls="v-pills-1" aria-selected="true">Description</a>
+
+						<a class="nav-link ftco-animate mr-lg-1" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2"
+							role="tab" aria-controls="v-pills-2" aria-selected="false">Manufacturer</a>
+
+						<a class="nav-link ftco-animate" id="v-pills-3-tab" data-toggle="pill" href="#v-pills-3"
+							role="tab" aria-controls="v-pills-3" aria-selected="false">Reviews</a>
+
 					</div>
 				</div>
 				<div class="col-md-12 tab-wrap">
@@ -230,8 +199,14 @@
 						<div class="tab-pane fade show active" id="v-pills-1" role="tabpanel"
 							aria-labelledby="day-1-tab">
 							<div class="p-4">
-								<h3 class="mb-4" style="font-weight: 700;"><?= $nama_produk; ?></h3>
-								<p><?= $deskripsi; ?></p>
+								<h3 class="mb-4">Nike Free RN 2019 iD</h3>
+								<p>On her way she met a copy. The copy warned the Little Blind Text, that where it came
+									from it would have been rewritten a thousand times and everything that was left from
+									its origin would be the word "and" and the Little Blind Text should turn around and
+									return to its own, safe country. But nothing the copy said could convince her and so
+									it didn’t take long until a few insidious Copy Writers ambushed her, made her drunk
+									with Longe and Parole and dragged her into their agency, where they abused her for
+									their.</p>
 							</div>
 						</div>
 

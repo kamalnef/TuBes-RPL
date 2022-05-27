@@ -190,7 +190,7 @@
 				            <p class="price"><span>Rp <?=number_format($row['harga_produk'],0,"",".")?></span></p>
 				        </div>
 				        <p class="bottom-area d-flex px-3">
-				            <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Add to cart <i
+				            <a href="add_cart.php?key=<?= $row['id_produk'] ?>" class="add-to-cart text-center py-2 mr-1"><span>Add to cart <i
 				                        class="ion-ios-add ml-1"></i></span></a>
 				            <a href="#" class="buy-now text-center py-2">Buy now<span><i
 				                        class="ion-ios-cart ml-1"></i></span></a>
