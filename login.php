@@ -48,10 +48,12 @@
             {
                 // Set Session
                 $_SESSION["login"] = true;
-
+                $id = $row["id_user"];
+                $kueri = mysqli_query($conn, "SELECT * FROM cart_id WHERE id_user = $id");
+                $cart = mysqli_fetch_assoc($kueri);
                 // Set Session Buat Nampilin Nama User
                 $_SESSION["nama"] = $row["nama_lengkap"];
-
+                $_SESSION["cart"] = $cart["id_cart"];
                 // Cek Remember Me
                 if(isset($_POST['remember']))
                 {

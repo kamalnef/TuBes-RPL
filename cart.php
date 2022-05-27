@@ -1,7 +1,7 @@
 <?php
-
+	include("config.php");
 	session_start();
-
+	$cart=$_SESSION['cart'];
 	if(!isset($_SESSION["login"]))
 	{
 		header("location: login.php");
@@ -136,53 +136,32 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr class="text-center">
-									<td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
+							<?php
+								$_SESSION['total_harga'] =0;
+								$_SESSION['total_berat'] =0 ;
+								$query = "SELECT * from cart, produk where cart.id_cart = '$cart'  and cart.id_produk = produk.id_produk;";
+								$result = mysqli_query($conn, $query);
+								while($row = mysqli_fetch_assoc($result))
+								{
+								?>
+									<tr class="text-center">
+										<td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
+										<td class="image-prod">
+											<img class="img-fluid" width="300px" src="images/produk/<?=$row['gambar_produk']?>">
+										</td>
+										<td class="product-name">
+											<h3><?=$row['nama_produk']?></h3>
+										</td>
+										<td class="price">Rp <?=number_format($row['harga_produk'],0,"",".")?></td>
+										<td class="quantity"><?=$row['jumlah_barang']?> Buah</td>
+										<td class="total">Rp <?=number_format($row['total_harga'],0,"",".")?></td>
+									</tr>
 
-									<td class="image-prod">
-										<div class="img" style="background-image:url(images/product-3.jpg);"></div>
-									</td>
-
-									<td class="product-name">
-										<h3>Nike Free RN 2019 iD</h3>
-										<p>Far far away, behind the word mountains, far from the countries</p>
-									</td>
-
-									<td class="price">$4.90</td>
-
-									<td class="quantity">
-										<div class="input-group mb-3">
-											<input type="text" name="quantity"
-												class="quantity form-control input-number" value="1" min="1" max="100">
-										</div>
-									</td>
-
-									<td class="total">$4.90</td>
-								</tr><!-- END TR-->
-
-								<tr class="text-center">
-									<td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
-
-									<td class="image-prod">
-										<div class="img" style="background-image:url(images/product-4.jpg);"></div>
-									</td>
-
-									<td class="product-name">
-										<h3>Nike Free RN 2019 iD</h3>
-										<p>Far far away, behind the word mountains, far from the countries</p>
-									</td>
-
-									<td class="price">$15.70</td>
-
-									<td class="quantity">
-										<div class="input-group mb-3">
-											<input type="text" name="quantity"
-												class="quantity form-control input-number" value="1" min="1" max="100">
-										</div>
-									</td>
-
-									<td class="total">$15.70</td>
-								</tr><!-- END TR-->
+								<?php
+									$_SESSION['total_harga'] += $row['total_harga'];
+									$_SESSION['total_berat'] += $row['total_berat'];
+								}
+								?>
 							</tbody>
 						</table>
 					</div>
@@ -194,15 +173,11 @@
 						<h3>Cart Totals</h3>
 						<p class="d-flex">
 							<span>Subtotal</span>
-							<span>$20.60</span>
+							<span><?=number_format($_SESSION['total_harga'],0,"",".")?></span>
 						</p>
 						<p class="d-flex">
 							<span>Delivery</span>
-							<span>$0.00</span>
-						</p>
-						<p class="d-flex">
-							<span>Discount</span>
-							<span>$3.00</span>
+							<span></span>
 						</p>
 						<hr>
 						<p class="d-flex total-price">
