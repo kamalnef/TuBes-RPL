@@ -63,15 +63,28 @@
 								</div>
 							</div>
 							<div class="w-100"></div>
+							<?php
+							
+								include("config.php");
+
+								$query = "SELECT * FROM kategori_barang";
+
+								$result = mysqli_query($conn, $query);
+							
+							?>
 							<div class="col-md-12">
 								<div class="form-group">
 									<label for="id_kategori">Kategori Produk</label>
 									<div class="select-wrap">
 										<div class="icon"><span class="ion-ios-arrow-down"></span></div>
 										<select name="id_kategori" id="id_kategori" class="form-control">
-											<option value="1">Album</option>
-											<option value="2">DVD</option>
-											<option value="3">Merch</option>
+											<?php
+												while($row = mysqli_fetch_assoc($result)) {
+											?>
+											<option value="<?= $row['id_kategori'] ?>"><?= $row['nama_kategori'] ?></option>
+											<?php
+												}
+											?>
 										</select>
 									</div>
 								</div>

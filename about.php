@@ -112,7 +112,7 @@
     <div class="container">
       <div class="row no-gutters slider-text align-items-center justify-content-center">
         <div class="col-md-9 ftco-animate text-center">
-          <p class="breadcrumbs"><span class="mr-2"><a href="index.php">Home</a></span> <span>About</span></p>
+          <p class="breadcrumbs"><span class="mr-2">K-FEVER</span></p>
           <h1 class="mb-0 bread">About Us</h1>
         </div>
       </div>
@@ -128,9 +128,8 @@
               <span class="flaticon-bag"></span>
             </div>
             <div class="media-body">
-              <h3 class="heading">Free Shipping</h3>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
-                blind texts.</p>
+              <h3 class="heading">Originality</h3>
+              <p>All items from K-Fever are guaranteed authentic!</p>
             </div>
           </div>
         </div>
@@ -141,8 +140,7 @@
             </div>
             <div class="media-body">
               <h3 class="heading">Support Customer</h3>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
-                blind texts.</p>
+              <p>We're happy to hear any of our customer's question and input. Don't hesitate to reach out to us and we'll contact you immediately.</p>
             </div>
           </div>
         </div>
@@ -152,9 +150,8 @@
               <span class="flaticon-payment-security"></span>
             </div>
             <div class="media-body">
-              <h3 class="heading">Secure Payments</h3>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
-                blind texts.</p>
+              <h3 class="heading">Secure & Easy Payment</h3>
+              <p>Buy anything you want with easy and safe e-wallet methods!</p>
             </div>
           </div>
         </div>
@@ -175,16 +172,13 @@
         <div class="col-md-7 py-md-5 wrap-about pb-md-5 ftco-animate">
           <div class="heading-section-bold mb-4 mt-md-5">
             <div class="ml-md-0">
-              <h2 class="mb-4">Stablished Sinced 1975</h2>
+              <h2 class="mb-4">Stablished Sinced 2022,</h2>
             </div>
           </div>
           <div class="pb-md-5 pb-4">
-            <p>But nothing the copy said could convince her and so it didn’t take long until a few insidious Copy
-              Writers ambushed her, made her drunk with Longe and Parole and dragged her into their agency, where they
-              abused her for their.</p>
-            <p>But nothing the copy said could convince her and so it didn’t take long until a few insidious Copy
-              Writers ambushed her.</p>
-            <p><a href="#" class="btn btn-primary">Shop now</a></p>
+            <p>K-Fever is a platform made for K-Popers all around Indonesia, providing customers with an easy, secure and fast online shopping experience through strong payment and fulfillment support.</p>
+            <p>We believe online shopping should be accessible, easy and enjoyable. This is the vision K-Fever aspires to deliver on the platform, every single day.</p>
+            <p><a href="shop.php" class="btn btn-primary">Shop now</a></p>
           </div>
         </div>
       </div>
@@ -201,8 +195,8 @@
                 <span class="flaticon-bag"></span>
               </div>
               <div class="text">
-                <h3>Free Shipping</h3>
-                <p class="mb-0">Separated they live in. A small river named Duden flows</p>
+                <h3>Originality</h3>
+                <p class="mb-0">Original products from the group's respected label.</p>
               </div>
             </div>
             <div class="services-2 p-4 d-flex ftco-animate">
@@ -210,8 +204,8 @@
                 <span class="flaticon-heart-box"></span>
               </div>
               <div class="text">
-                <h3>Valuable Gifts</h3>
-                <p class="mb-0">Separated they live in. A small river named Duden flows</p>
+                <h3>Package</h3>
+                <p class="mb-0">The product will get to you safely and satisfactorily.</p>
               </div>
             </div>
             <div class="services-2 p-4 d-flex ftco-animate">
@@ -219,8 +213,8 @@
                 <span class="flaticon-payment-security"></span>
               </div>
               <div class="text">
-                <h3>All Day Support</h3>
-                <p class="mb-0">Separated they live in. A small river named Duden flows</p>
+                <h3>Security</h3>
+                <p class="mb-0">Transactions are guaranteed safe and easy.</p>
               </div>
             </div>
             <div class="services-2 p-4 d-flex ftco-animate">
@@ -228,8 +222,8 @@
                 <span class="flaticon-customer-service"></span>
               </div>
               <div class="text">
-                <h3>All Day Support</h3>
-                <p class="mb-0">Separated they live in. A small river named Duden flows</p>
+                <h3>Support</h3>
+                <p class="mb-0">Contact us and we will answer quickly (available for 24/5).</p>
               </div>
             </div>
           </div>
@@ -237,82 +231,76 @@
         <div class="col-lg-7">
           <div class="heading-section ftco-animate mb-5">
             <h2 class="mb-4">Our satisfied customer says</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
-              blind texts. Separated they live in</p>
+            <p>These are reviews from our beloved customers all around Indonesia.</p>
           </div>
           <div class="carousel-testimony owl-carousel ftco-animate">
             <div class="item">
               <div class="testimony-wrap">
-                <div class="user-img mb-4" style="background-image: url(images/person_1.jpg)">
+                <div class="user-img mb-4" style="background-image: url(images/dummyP.png)">
                   <span class="quote d-flex align-items-center justify-content-center">
                     <i class="icon-quote-left"></i>
                   </span>
                 </div>
                 <div class="text">
-                  <p class="mb-4 pl-4 line">Far far away, behind the word mountains, far from the countries Vokalia and
-                    Consonantia, there live the blind texts.</p>
-                  <p class="name">Garreth Smith</p>
-                  <span class="position">Marketing Manager</span>
+                  <p class="mb-4 pl-4 line">Saya sering beli album disini dan selalu puas. Pesanannya cepat dan aman. Gak nyesel beli di K-Fever.</p>
+                  <p class="name">Achmad Kalla</p>
+                  <span class="position">Customer</span>
                 </div>
               </div>
             </div>
             <div class="item">
               <div class="testimony-wrap">
-                <div class="user-img mb-4" style="background-image: url(images/person_2.jpg)">
+                <div class="user-img mb-4" style="background-image: url(images/dummyP.png)">
                   <span class="quote d-flex align-items-center justify-content-center">
                     <i class="icon-quote-left"></i>
                   </span>
                 </div>
                 <div class="text">
-                  <p class="mb-4 pl-4 line">Far far away, behind the word mountains, far from the countries Vokalia and
-                    Consonantia, there live the blind texts.</p>
-                  <p class="name">Garreth Smith</p>
-                  <span class="position">Interface Designer</span>
+                  <p class="mb-4 pl-4 line">Saya beli banyak merchandise di K-Fever untuk teman-teman saya. Kualitas barangnya tinggi dan original.</p>
+                  <p class="name">Benny Tjokrosapoetro</p>
+                  <span class="position">Customer</span>
                 </div>
               </div>
             </div>
             <div class="item">
               <div class="testimony-wrap">
-                <div class="user-img mb-4" style="background-image: url(images/person_3.jpg)">
+                <div class="user-img mb-4" style="background-image: url(images/dummyP.png)">
                   <span class="quote d-flex align-items-center justify-content-center">
                     <i class="icon-quote-left"></i>
                   </span>
                 </div>
                 <div class="text">
-                  <p class="mb-4 pl-4 line">Far far away, behind the word mountains, far from the countries Vokalia and
-                    Consonantia, there live the blind texts.</p>
-                  <p class="name">Garreth Smith</p>
-                  <span class="position">UI Designer</span>
+                  <p class="mb-4 pl-4 line">Saya belanja di K-Fever karena produknya bagus, asli, dan aman. Bener-bener terjamin deh.</p>
+                  <p class="name">Chandra Ekajaya</p>
+                  <span class="position">Customer</span>
                 </div>
               </div>
             </div>
             <div class="item">
               <div class="testimony-wrap">
-                <div class="user-img mb-4" style="background-image: url(images/person_1.jpg)">
+                <div class="user-img mb-4" style="background-image: url(images/dummyP.png)">
                   <span class="quote d-flex align-items-center justify-content-center">
                     <i class="icon-quote-left"></i>
                   </span>
                 </div>
                 <div class="text">
-                  <p class="mb-4 pl-4 line">Far far away, behind the word mountains, far from the countries Vokalia and
-                    Consonantia, there live the blind texts.</p>
-                  <p class="name">Garreth Smith</p>
-                  <span class="position">Web Developer</span>
+                  <p class="mb-4 pl-4 line">Pembayaran di K-Fever mudah dan cepat. Hanya tinggal menggunakan e-wallet dan barang langsung diproses.</p>
+                  <p class="name">Daniel Kurniawan</p>
+                  <span class="position">Customer</span>
                 </div>
               </div>
             </div>
             <div class="item">
               <div class="testimony-wrap">
-                <div class="user-img mb-4" style="background-image: url(images/person_1.jpg)">
+                <div class="user-img mb-4" style="background-image: url(images/dummyP.png)">
                   <span class="quote d-flex align-items-center justify-content-center">
                     <i class="icon-quote-left"></i>
                   </span>
                 </div>
                 <div class="text">
-                  <p class="mb-4 pl-4 line">Far far away, behind the word mountains, far from the countries Vokalia and
-                    Consonantia, there live the blind texts.</p>
-                  <p class="name">Garreth Smith</p>
-                  <span class="position">System Analyst</span>
+                  <p class="mb-4 pl-4 line">Membeli barang di K-Fever itu gak sulit dan mudah dimengerti. Caranya juga cepat dan tidak banyak basa-basi.</p>
+                  <p class="name">Eddy Pramono</p>
+                  <span class="position">Customer</span>
                 </div>
               </div>
             </div>
@@ -334,8 +322,8 @@
       <div class="row mb-5">
         <div class="col-md">
           <div class="ftco-footer-widget mb-4">
-            <h2 class="ftco-heading-2">Minishop</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+            <h2 class="ftco-heading-2">K-Fever</h2>
+            <p>Accessible, guaranteed, and affordable k-pop shop.</p>
             <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
               <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
               <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
@@ -347,10 +335,10 @@
           <div class="ftco-footer-widget mb-4 ml-md-5">
             <h2 class="ftco-heading-2">Menu</h2>
             <ul class="list-unstyled">
-              <li><a href="#" class="py-2 d-block">Shop</a></li>
-              <li><a href="#" class="py-2 d-block">About</a></li>
-              <li><a href="#" class="py-2 d-block">Journal</a></li>
-              <li><a href="#" class="py-2 d-block">Contact Us</a></li>
+              <li><a href="index.php" class="py-2 d-block">Home</a></li>
+              <li><a href="shop.php" class="py-2 d-block">Shop</a></li>
+              <li><a href="about.php" class="py-2 d-block">About</a></li>
+              <li><a href="contact.php" class="py-2 d-block">Contact</a></li>
             </ul>
           </div>
         </div>
@@ -366,7 +354,8 @@
               </ul>
               <ul class="list-unstyled">
                 <li><a href="#" class="py-2 d-block">FAQs</a></li>
-                <li><a href="#" class="py-2 d-block">Contact</a></li>
+                <li><a href="#" class="py-2 d-block">Delivery</a></li>
+                <li><a href="#" class="py-2 d-block">Payment Methods</a></li>
               </ul>
             </div>
           </div>
@@ -392,9 +381,7 @@
           <p>
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             Copyright &copy;
-            <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with
-            <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com"
-              target="_blank">Colorlib</a>
+            <script>document.write(new Date().getFullYear());</script> Shopee. <br>Trademarks belong to their respective owners. All rights reserved.
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
           </p>
         </div>
