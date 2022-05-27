@@ -105,9 +105,9 @@
                 <form action="" method="post">
                     <div class="input">
                         <label for="username">Username</label>
-                        <input name="username" class="xyz" type="text" id="username" placeholder="Insert Your Username ...">
+                        <input name="username" class="xyz" type="text" id="username" placeholder="Insert Your Username ..." required>
                         <label for="password">Password</label>
-                        <input name="password" class="xyz" type="password" id="password" placeholder="Insert Your Password ...">
+                        <input name="password" class="xyz" type="password" id="password" placeholder="Insert Your Password ..." required>
                         <div class="rm-box">
                             <input type="checkbox" name="remember">
                             <span>Remember Me</span>

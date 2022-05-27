@@ -42,19 +42,19 @@ if(isset($_POST["register"]))
                 <form action="" method="post">
                     <div class="input">
                         <label for="username">Username</label>
-                        <input class="xyz" type="text" id="username" placeholder="Insert Your Username ..." name="username">
+                        <input class="xyz" type="text" id="username" placeholder="Insert Your Username ..." name="username" required>
                         <label for="password">Password</label>
-                        <input class="xyz" type="password" id="password" placeholder="Insert Your Password ..." name="password">
+                        <input class="xyz" type="password" id="password" placeholder="Insert Your Password ..." name="password" required>
                         <label for="email">E-Mail</label>
-                        <input class="xyz" type="email" id="email" placeholder="Someone@mail.com" name="email">
+                        <input class="xyz" type="email" id="email" placeholder="Someone@mail.com" name="email" required>
                         <label for="name">Nama Lengkap</label>
-                        <input class="xyz" type="text" id="name" placeholder="Insert Your Name ..." name="name">
+                        <input class="xyz" type="text" id="name" placeholder="Insert Your Name ..." name="name" required>
                         <label for="telephone">Nomor Telepon</label>
-                        <input class="xyz" type="text" id="telephone" placeholder="Insert Your Telephone Number ..." name="telephone">
+                        <input class="xyz" type="text" id="telephone" placeholder="Insert Your Telephone Number ..." name="telephone" required>
                         <label for="address">Alamat</label>
-                        <input class="xyz" type="text" id="address" placeholder="Insert Your Address ..." name="address">
+                        <input class="xyz" type="text" id="address" placeholder="Insert Your Address ..." name="address" required>
                         <label for="kodepos">Kode Pos</label>
-                        <input class="xyz" type="text" id="kodepos" placeholder="Insert Your Postal Code ..." name="kodepos">
+                        <input class="xyz" type="text" id="kodepos" placeholder="Insert Your Postal Code ..." name="kodepos" required>
                     </div>
                     <div class="submit">
                         <button name="register">SUBMIT</button>
