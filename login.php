@@ -54,6 +54,9 @@
                 // Set Session Buat Nampilin Nama User
                 $_SESSION["nama"] = $row["nama_lengkap"];
                 $_SESSION["cart"] = $cart["id_cart"];
+                $_SESSION["kodepos"] = $row["kode_pos"];
+                $_SESSION["id"] = $row["id_user"];
+                $_SESSION["alamat"] = $row["alamat_lengkap"];
                 // Cek Remember Me
                 if(isset($_POST['remember']))
                 {
