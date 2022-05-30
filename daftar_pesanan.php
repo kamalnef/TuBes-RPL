@@ -1,7 +1,7 @@
 <?php
 	include("config.php");
 	session_start();
-	$cart=$_SESSION['cart'];
+	$id=$_SESSION['id'];
 	if(!isset($_SESSION["login"]))
 	{
 		header("location: login.php");
@@ -112,8 +112,8 @@
 		<div class="container">
 			<div class="row no-gutters slider-text align-items-center justify-content-center">
 				<div class="col-md-9 ftco-animate text-center">
-					<p class="breadcrumbs"><span class="mr-2"><a href="index.php">Home</a></span> <span><a href="daftar_pesanan.php">order</a></span></p>
-					<h1 class="mb-0 bread">My Wishlist</h1>
+					<p class="breadcrumbs"><span class="mr-2"><a href="index.php">Home</a></span> <span><a href="cart.php">Cart</a></span></p>
+					<h1 class="mb-0 bread">My Order</h1>
 				</div>
 			</div>
 		</div>
@@ -124,61 +124,34 @@
 			<div class="row">
 				<div class="col-md-12 ftco-animate">
 					<div class="cart-list">	
-						<a href="daftar_pesanan.php" class="btn btn-dark mb-2">LIHAT DAFTAR PESANAN </a>
-						<table class="table">
+						<a href="cart.php" class="btn btn-dark mb-2">LIHAT DAFTAR KERANJANG </a>
+						<table class="table table-bordered table-striped table-hover">
 							<thead class="thead-primary">
 								<tr class="text-center">
-									<th>&nbsp;</th>
-									<th>&nbsp;</th>
-									<th>Product</th>
-									<th>Price</th>
-									<th>Quantity</th>
-									<th>Total</th>
+                                    <th>Nomor Pesanan</th>
 								</tr>
 							</thead>
 							<tbody>
 							<?php
-								$_SESSION['total_harga'] =0;
-								$_SESSION['total_berat'] =0 ;
-								$query = "SELECT * from cart, produk where cart.id_cart = '$cart'  and cart.id_produk = produk.id_produk;";
+                                $no = 1;
+								$query = "SELECT * from pesanan where id_user = '$id'";
 								$result = mysqli_query($conn, $query);
 								while($row = mysqli_fetch_assoc($result))
 								{
 								?>
 									<tr class="text-center">
-										<td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
-										<td class="image-prod">
-											<img class="img-fluid" width="300px" src="images/produk/<?=$row['gambar_produk']?>">
-										</td>
 										<td class="product-name">
-											<h3><?=$row['nama_produk']?></h3>
+											<a href="pembayaran.php?key=<?=$row['id_pesanan']?>"><h3><?=$row['nomor_pesanan']?></h3></a>
 										</td>
-										<td class="price">Rp <?=number_format($row['harga_produk'],0,"",".")?></td>
-										<td class="quantity"><?=$row['jumlah_barang']?> Buah</td>
-										<td class="total">Rp <?=number_format($row['total_harga'],0,"",".")?></td>
 									</tr>
 
 								<?php
-									$_SESSION['total_harga'] += $row['total_harga'];
-									$_SESSION['total_berat'] += $row['total_berat'];
+                                    $no++;
 								}
 								?>
 							</tbody>
 						</table>
 					</div>
-				</div>
-			</div>
-			<div class="row justify-content-start">
-				<div class="col col-lg-5 col-md-6 mt-5 cart-wrap ftco-animate">
-					<div class="cart-total mb-3">
-						<h3>Cart Totals</h3>
-						<p class="d-flex">
-							<span>Subtotal</span>
-							<span><?=number_format($_SESSION['total_harga'],0,"",".")?></span>
-						</p>
-					</div>
-					<p class="text-center"><a href="detail_pesanan.php" class="btn btn-primary py-3 px-4">Proceed to
-							Checkout</a></p>
 				</div>
 			</div>
 		</div>

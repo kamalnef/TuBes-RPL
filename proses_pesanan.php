@@ -40,7 +40,10 @@
         $pembayaran = 5;
     }
 
-    $input = "INSERT INTO pesanan VALUES (' ', '$id_user', '$nomor_pesanan', '$nama', '$provinsi', '$nama_distrik', '$alamat', '$ekspedisi', '$paket', '$kodepos', '$total_bayar', '$pembayaran', '$berat')";
+    $input = "INSERT INTO pesanan VALUES 
+    (' ', '$id_user', '$nomor_pesanan', '$nama', '$provinsi', 
+    '$nama_distrik', '$alamat', '$ekspedisi', '$paket', '$kodepos', 
+    '$total_bayar', '$pembayaran', '$berat', 0, ' ', ' ' )";
     $query = mysqli_query($conn, $input);
 
     header("location: input_pesanan.php?key=$nomor_pesanan");

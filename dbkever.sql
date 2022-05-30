@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 30 Bulan Mei 2022 pada 05.29
+-- Waktu pembuatan: 31 Bulan Mei 2022 pada 01.01
 -- Versi server: 10.4.22-MariaDB
 -- Versi PHP: 8.1.2
 
@@ -124,19 +124,20 @@ CREATE TABLE `metode_pengiriman` (
 
 CREATE TABLE `opsi_pembayaran` (
   `id_opsi` int(11) NOT NULL,
-  `nama_pembayaran` varchar(50) NOT NULL
+  `nama_pembayaran` varchar(50) NOT NULL,
+  `nomor` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `opsi_pembayaran`
 --
 
-INSERT INTO `opsi_pembayaran` (`id_opsi`, `nama_pembayaran`) VALUES
-(1, 'OVO'),
-(2, 'GOPAY'),
-(3, 'Shopeepay'),
-(4, 'DANA'),
-(5, 'Transfer Bank');
+INSERT INTO `opsi_pembayaran` (`id_opsi`, `nama_pembayaran`, `nomor`) VALUES
+(1, 'OVO', '085880329771'),
+(2, 'GOPAY', '085217088766'),
+(3, 'Shopeepay', '085880329771'),
+(4, 'DANA', '085217088766'),
+(5, 'Transfer Bank', 'Bank BRI : 4094 0102 1575 530');
 
 -- --------------------------------------------------------
 
@@ -158,23 +159,18 @@ CREATE TABLE `pesanan` (
   `total_bayar` varchar(255) NOT NULL,
   `id_opsi` int(11) NOT NULL,
   `berat_barang` int(11) NOT NULL,
-  `status_pembayaran` varchar(100) NOT NULL
+  `status_pembayaran` varchar(100) NOT NULL,
+  `bukti_pembayaran` varchar(2255) NOT NULL,
+  `resi` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `pesanan`
 --
 
-INSERT INTO `pesanan` (`id_pesanan`, `id_user`, `nomor_pesanan`, `nama_penerima`, `provinsi`, `distrik`, `alamat_pengiriman`, `ekspedisi`, `paket`, `kodepos`, `total_bayar`, `id_opsi`, `berat_barang`, `status_pembayaran`) VALUES
-(2, 7, 'KFVR001', 'Rafi Arsalan', 'DKI Jakarta', 'Kota Jakarta Timur', 'Kp. jamban 1 rt 03/04, Cikakak', 'tiki', 'ONS', '43365', '14245000', 3, 3200, ''),
-(3, 7, 'KFVR002', 'Andii', 'Banten', 'Kota Serang', 'Kp. jamban 1 rt 03/04, Cikakak', 'pos', 'Express Next Day Barang', '43365', '14257000', 1, 3200, ''),
-(4, 7, 'KFVR003', 'Andii', 'Banten', 'Kota Serang', 'Kp. jamban 1 rt 03/04, Cikakak', 'pos', 'Express Next Day Barang', '43365', '14257000', 1, 3200, ''),
-(5, 7, 'KFVR004', 'Andii', 'Banten', 'Kota Serang', 'Kp. jamban 1 rt 03/04, Cikakak', 'pos', 'Express Next Day Barang', '43365', '14257000', 1, 3200, ''),
-(6, 7, 'KFVR005', 'Andii Arsyaa', 'Bengkulu', 'Kabupaten Seluma', 'Kp. jamban 1 rt 03/04, Cikakak', 'pos', 'Paket Kilat Khusus', '43365', '14332000', 3, 3200, ''),
-(7, 7, 'KFVR006', 'Rafi Arsalan', 'Bengkulu', 'Kabupaten Kepahiang', 'Kp. jamban 1 rt 03/04, Cikakak', 'tiki', 'REG', '43365', '14351125', 5, 3200, ''),
-(8, 7, 'KFVR007', 'Rafi Arsalan', 'DI Yogyakarta', 'Kabupaten Kulon Progo', 'Kp. jamban 1 rt 03/04, Cikakak', 'jne', 'REG', '43365', '14260000', 1, 3200, ''),
-(10, 7, 'KFVR008', 'Rafi Arsalan', 'DI Yogyakarta', 'Kabupaten Sleman', 'Kp. jamban 1 rt 03/04, Cikakak', 'jne', 'YES', '43365', '3520000', 1, 700, ''),
-(11, 7, 'KFVR009', 'Rafi Arsalan', 'Papua Barat', 'Kabupaten Kaimana', 'Kp. jamban 1 rt 03/04, Cikakak', 'jne', 'REG', '43365', '838000', 3, 1600, '');
+INSERT INTO `pesanan` (`id_pesanan`, `id_user`, `nomor_pesanan`, `nama_penerima`, `provinsi`, `distrik`, `alamat_pengiriman`, `ekspedisi`, `paket`, `kodepos`, `total_bayar`, `id_opsi`, `berat_barang`, `status_pembayaran`, `bukti_pembayaran`, `resi`) VALUES
+(21, 7, 'KFVR001', 'Rafi Arsalan', 'Bali', 'Kabupaten Bangli', 'Kp. jamban 1 rt 03/04, Cikakak', 'pos', 'Paket Kilat Khusus', '43365', '3529000', 3, 700, '0', ' ', ' '),
+(22, 7, 'KFVR002', 'Rafi Arsalan', 'Banten', 'Kabupaten Lebak', 'Kp. jamban 1 rt 03/04, Cikakak', 'pos', 'Paket Kilat Khusus', '43365', '3714500', 5, 1100, '1', '584-78.jpg', ' ');
 
 -- --------------------------------------------------------
 
@@ -240,8 +236,9 @@ CREATE TABLE `produk_pesanan` (
 --
 
 INSERT INTO `produk_pesanan` (`id_pesanan`, `id_produk`, `jumlah_barang`) VALUES
-(11, 11, 2),
-(11, 18, 1);
+(21, 2, 1),
+(22, 12, 1),
+(22, 6, 1);
 
 -- --------------------------------------------------------
 
@@ -323,8 +320,8 @@ ALTER TABLE `opsi_pembayaran`
 --
 ALTER TABLE `pesanan`
   ADD PRIMARY KEY (`id_pesanan`),
-  ADD KEY `pesanan_ibfk_1` (`id_user`),
-  ADD KEY `pesanan_ibfk_2` (`id_opsi`);
+  ADD KEY `pesanan_ibfk_2` (`id_opsi`),
+  ADD KEY `pesanan_ibfk_1` (`id_user`);
 
 --
 -- Indeks untuk tabel `produk`
@@ -390,7 +387,7 @@ ALTER TABLE `opsi_pembayaran`
 -- AUTO_INCREMENT untuk tabel `pesanan`
 --
 ALTER TABLE `pesanan`
-  MODIFY `id_pesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_pesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT untuk tabel `produk`

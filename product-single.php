@@ -134,7 +134,7 @@
 					<li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
 					<li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
 					<li class="nav-item cta cta-colored"><a href="cart.php" class="nav-link"><span
-								class="icon-shopping_cart"></span>[0]</a></li>
+								class="fa-solid fa-cart-shopping"></span>[0]</a></li>
 
 				</ul>
 			</div>
