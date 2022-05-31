@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 25 Bulan Mei 2022 pada 04.49
+-- Waktu pembuatan: 31 Bulan Mei 2022 pada 01.01
 -- Versi server: 10.4.22-MariaDB
 -- Versi PHP: 8.1.2
 
@@ -49,11 +49,30 @@ INSERT INTO `admin` (`id_admin`, `username_admin`, `password_admin`) VALUES
 CREATE TABLE `cart` (
   `id_cart` int(11) NOT NULL,
   `id_produk` int(11) DEFAULT NULL,
-  `id_user` int(11) DEFAULT NULL,
   `jumlah_barang` int(11) NOT NULL,
   `total_harga` int(11) NOT NULL,
   `total_berat` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `cart_id`
+--
+
+CREATE TABLE `cart_id` (
+  `id_cart` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `cart_id`
+--
+
+INSERT INTO `cart_id` (`id_cart`, `id_user`) VALUES
+(1, 1),
+(2, 2),
+(4, 7);
 
 -- --------------------------------------------------------
 
@@ -100,6 +119,62 @@ CREATE TABLE `metode_pengiriman` (
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `opsi_pembayaran`
+--
+
+CREATE TABLE `opsi_pembayaran` (
+  `id_opsi` int(11) NOT NULL,
+  `nama_pembayaran` varchar(50) NOT NULL,
+  `nomor` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `opsi_pembayaran`
+--
+
+INSERT INTO `opsi_pembayaran` (`id_opsi`, `nama_pembayaran`, `nomor`) VALUES
+(1, 'OVO', '085880329771'),
+(2, 'GOPAY', '085217088766'),
+(3, 'Shopeepay', '085880329771'),
+(4, 'DANA', '085217088766'),
+(5, 'Transfer Bank', 'Bank BRI : 4094 0102 1575 530');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `pesanan`
+--
+
+CREATE TABLE `pesanan` (
+  `id_pesanan` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `nomor_pesanan` varchar(100) NOT NULL,
+  `nama_penerima` varchar(255) NOT NULL,
+  `provinsi` varchar(100) NOT NULL,
+  `distrik` varchar(100) NOT NULL,
+  `alamat_pengiriman` varchar(255) NOT NULL,
+  `ekspedisi` varchar(5) NOT NULL,
+  `paket` varchar(100) NOT NULL,
+  `kodepos` varchar(20) NOT NULL,
+  `total_bayar` varchar(255) NOT NULL,
+  `id_opsi` int(11) NOT NULL,
+  `berat_barang` int(11) NOT NULL,
+  `status_pembayaran` varchar(100) NOT NULL,
+  `bukti_pembayaran` varchar(2255) NOT NULL,
+  `resi` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `pesanan`
+--
+
+INSERT INTO `pesanan` (`id_pesanan`, `id_user`, `nomor_pesanan`, `nama_penerima`, `provinsi`, `distrik`, `alamat_pengiriman`, `ekspedisi`, `paket`, `kodepos`, `total_bayar`, `id_opsi`, `berat_barang`, `status_pembayaran`, `bukti_pembayaran`, `resi`) VALUES
+(21, 7, 'KFVR001', 'Rafi Arsalan', 'Bali', 'Kabupaten Bangli', 'Kp. jamban 1 rt 03/04, Cikakak', 'pos', 'Paket Kilat Khusus', '43365', '3529000', 3, 700, '0', ' ', ' '),
+(22, 7, 'KFVR002', 'Rafi Arsalan', 'Banten', 'Kabupaten Lebak', 'Kp. jamban 1 rt 03/04, Cikakak', 'pos', 'Paket Kilat Khusus', '43365', '3714500', 5, 1100, '1', '584-78.jpg', ' ');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `produk`
 --
 
@@ -132,7 +207,6 @@ INSERT INTO `produk` (`id_produk`, `id_kategori`, `nama_produk`, `gambar_produk`
 (5, 1, 'LOVE YOURSELF 結 ‘Answer’', 'LOVE YOURSELF 結 ‘Answer’.jpg', 3, 'Pertama kali diluncurkan pada bulan Maret 2016, seri BTS LOVE YOURSELF menciptakan narasi dengan menghubungkan lagu-lagu utama di setiap album ke dalam satu tema, menyampaikan pesan bahwa \"mencintai diri sendiri adalah cinta sejati\". Seperti novel yang ditulis dengan baik yang memiliki prolog, pengembangan karakter, lika-liku, dan epilog, BTS berbagi cerita yang menarik selama dua setengah tahun.\r\n\r\nDirilis pada 24 Agustus 2018, \'ANSWER’ adalah bagian terakhir dari teka-teki serial ini. Meskipun ini adalah album repackage, LOVE YOURSELF 結 \'ANSWER\' masih berisi tujuh lagu baru termasuk single utama, ‘IDOL’. Rapper kenamaan asal Amerika, Nicki Minaj, juga mendapat kesempatan untuk mengambil bagian di single ‘IDOL’.\r\n', 700, 3500000, 'Photocard', '2016-03-20', 'Label', 'Produksi', 'Bandung', 'Baru'),
 (6, 1, 'LOVE YOURSELF 轉 \'Tear\'', 'LOVE YOURSELF 轉 \'Tear\'.jpg', 3, 'Album studio ketiga BTS ini dirilis pada 18 Mei 2018.\r\n\r\nSerial LOVE YOURSELF BTS membawa pesan bahwa mencintai diri sendiri adalah awal dari cinta sejati. Sementara album LOVE YOURSELF 起 \'WONDER\' dan LOVE YOURSELF 承 \'HER\' yang sebelumnya diluncurkan mengungkapkan momen-momen cinta yang mengharukan dan menggetarkan hati, album LOVE YOURSELF 轉 \'TEAR\' mewujudkan rasa sakit yang harus menghadapi perpisahan.\r\n', 700, 3500000, 'Photocard', '2018-05-12', 'Label', 'Produksi', 'Bandung', 'Baru'),
 (7, 1, 'LOVE YOURSELF 承 \'Her\'', 'LOVE YOURSELF 承 \'Her\'.jpg', 3, 'Pada 18 September 2017, BTS merilis 承 \'Her\' sebagai album pertama di serial terbaru LOVE YOURSELF.\r\n\r\nLOVE YOURSELF 承 \'Her\' adalah ekspresi dari kecemasan dan kegembiraan cinta, diceritakan dalam gaya unik ala BTS. ‘Cinta’ yang ingin disampaikan BTS dalam seri LOVE YOURSELF adalah pesan perdamaian, persatuan bagi setiap insan dan pengalaman individu seorang anak laki-laki yang tumbuh dewasa. Dalam mini album 承 \'HER\' yang memulai narasi baru ini, citra anak laki-laki yang jatuh cinta untuk pertama kalinya diekspresikan dalam pengambilan yang menyegarkan dan ceria yang bertujuan untuk membicarakan topik ‘cinta’ sambil tenggelam dalam cerita yang akan datang.\r\n', 700, 3500000, 'Photocard', '2017-09-18', 'Label', 'Produksi', 'Bandung', 'Baru'),
-(8, 1, 'YOU NEVER WALK ALONE', 'YOU NEVER WALK ALONE.jpg', 3, 'YOU NEVER WALK ALONE melengkapi cerita “youth and growth” yang tidak semuanya bisa dimuat dalam album WINGS. Sementara seri The Most Beautiful Moment in Life dan WINGS adalah narasi dari “youth and growth”, bab tambahan untuk WINGS ini adalah pesan penghiburan hangat dan harapan bagi pemuda yang menderita di generasi saat ini.\r\n', 700, 3500000, 'Photocard', '2019-04-12', 'Label', 'Produksi', 'Bandung', 'Baru'),
 (9, 1, 'WINGS', 'WINGS.jpg', 3, 'BTS merilis album studio kedua mereka, ‘WINGS’. Setelah bertemu dengan serial ‘The Most Beautiful Moment in Life’, BTS kini berdiri di depan babak baru. Dirilis pada 10 Oktober 2016, WINGS berisi lagu-lagu tentang anak laki-laki yang menghadapi godaan untuk pertama kalinya dan harus merenungkan dan menderita dalam menghadapinya. Saat ketujuh anak laki-laki tersebut mengalami rasa sakit dan kebahagiaan, mereka memunculkan gambar burung yang keluar dari cangkangnya dan mencoba terbang untuk pertama kalinya.', 700, 3500000, 'Photocard', '2016-10-10', 'Label', 'Produksi', 'Bandung', 'Baru'),
 (10, 1, 'BTS Young Forever in The Most Beautiful Moment in Life', 'BTS Young Forever in The Most Beautiful Moment in Life.jpg', 3, 'Setelah mendapatkan atensi dunia dengan dua bagian The Most Beautiful Moment in LIfe Series pada tahun 2015, BTS merilis album spesial mereka bernama ‘The Most Beautiful Moment in Life: YOUNG FOREVER’ pada 2 Mei 2016. Sesuai dengan judul albumnya, serial ini telah memungkinkan BTS yang sekarang untuk berada di momen paling indah dalam hidup mereka. ‘The Most Beautiful Moment in Life: YOUNG FOREVER’ adalah album spesial yang menandai akhir dari perjalanan epik serial ini di mana berisi kisah-kisah terakhir yang dituturkan oleh anak-anak muda yang meskipun kenyataan tidak pasti dan tidak aman (The Most Beautiful Moment in Life Pt. 1), mereka harus terus berjalan ke depan (The Most Beautiful Moment in Life Pt. 2).', 700, 3500000, 'Photocard', '2016-03-02', 'Label', 'Produksi', 'Bandung', 'Baru'),
 (11, 2, 'BTS Memories of 2019 DVD', 'BTS Memories of 2019 DVD.jpg', 3, 'BTS Memories of 2019 menghadirkan 700 menit konten dan cuplikan menarik BTS dan ARMY selama tahun 2019. Dikemas dalam 6 CD, dari rekaman lengkap konser stadion Rose Bowl LA di hadapan 120.000 penggemar hingga semangat energik dimulainya BTS WORLD TOUR, LOVE YOURSELF: SPEAK YOURSELF. Selain itu, ikuti juga di balik layar pemotretan album \'MAP OF THE SOUL: PERSONA\' di bulan Januari hingga New Year\'s Rockin\' Eve pada tanggal 31 Desember.', 400, 200000, 'Signature', '2020-01-20', 'Label', 'Produksi', 'Bandung', 'Baru'),
@@ -143,8 +217,28 @@ INSERT INTO `produk` (`id_produk`, `id_kategori`, `nama_produk`, `gambar_produk`
 (16, 3, 'Graphic S/S T-Shirt', 'Graphic T-Shirt.png', 3, 'Kaos lengan pendek dengan desain grafis warna yang luar biasa. Terdapat aksen tulisan “Little stories found in the woods” yang identik dengan tema IN THE SOOP.', 500, 200000, 'Photocard + Signature', '2020-01-20', 'Label', 'Produksi', 'Bandung', 'Baru'),
 (17, 3, 'Sweatshirt (sky blue)', 'Sweatshirt (sky blue).png', 3, 'Sweatshirt yang dibuat menggunakan bahan zurry dengan model oversize yang trendi. Terdapat tulisan “SOOPY” (karakter utama dari IN THE SOOP) yang dibordir di bagian lengan kiri, lalu cetakan grafis tipografi merk di bagian depan.', 700, 200000, 'Signature + Photocard', '2020-01-20', 'Label', 'Produksi', 'Bandung', 'Baru'),
 (18, 3, 'Hoodie (melange grey)', 'Hoodie (melange grey).png', 3, 'Hoodie yang dibuat menggunakan bahan zurry dengan model oversize yang trendi. Terdapat tulisan “SOOPY” (karakter utama dari IN THE SOOP) yang dibordir di bagian depan, lalu cetakan grafis tipografi merek di bagian belakang\r\n', 800, 200000, 'Signature + Photocard', '2020-01-20', 'Label', 'Produksi', 'Bandung', 'Baru'),
-(19, 3, 'Tote Bag', 'Tote Bag.png', 3, 'Tote bag yang bisa digunakan dimanapun di setiap kegiatan sehari-hari. Terbuat dari bahan canvas, terdapat kantong kecil di dalamnya dan tulisan “Little stories found in the woods”. ', 200, 150000, 'Signature + Photocard', '2022-05-21', 'Label', 'Produksi', 'Bandung', 'Baru'),
-(20, 3, 'Woven Jacket', 'Woven Jacket.png', 3, 'Jaket woven ini sangat berguna saat terjadi perubahan suhu yang drastis antar musim. Ini adalah item yang sangat serbaguna yang dapat dipakai sendiri atau dikombinasikan dengan outfit lainnya. Terdapat tulisan IN THE SOOP yang tercetak di bagian depan dan simbol merk tercetak di bagian belakang.\r\n', 800, 300000, 'Signature + Photocard', '2022-05-21', 'Label', 'Produksi', 'Bandung', 'Baru');
+(19, 3, 'Tote Bag', 'Tote Bag.png', 3, 'Tote bag yang bisa digunakan dimanapun di setiap kegiatan sehari-hari. Terbuat dari bahan canvas, terdapat kantong kecil di dalamnya dan tulisan “Little stories found in the woods”. ', 200, 150000, 'Signature + Photocard', '2022-05-21', 'Label', 'Produksi', 'Bandung', 'Baru');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `produk_pesanan`
+--
+
+CREATE TABLE `produk_pesanan` (
+  `id_pesanan` int(11) NOT NULL,
+  `id_produk` int(11) NOT NULL,
+  `jumlah_barang` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `produk_pesanan`
+--
+
+INSERT INTO `produk_pesanan` (`id_pesanan`, `id_produk`, `jumlah_barang`) VALUES
+(21, 2, 1),
+(22, 12, 1),
+(22, 6, 1);
 
 -- --------------------------------------------------------
 
@@ -158,6 +252,7 @@ CREATE TABLE `user` (
   `nama_lengkap` varchar(50) NOT NULL,
   `nomor_telepon` varchar(20) DEFAULT NULL,
   `kode_pos` varchar(10) DEFAULT NULL,
+  `kota` varchar(255) NOT NULL,
   `alamat_lengkap` varchar(50) DEFAULT NULL,
   `username_user` varchar(50) DEFAULT NULL,
   `password_user` varchar(100) DEFAULT NULL
@@ -167,10 +262,10 @@ CREATE TABLE `user` (
 -- Dumping data untuk tabel `user`
 --
 
-INSERT INTO `user` (`id_user`, `email`, `nama_lengkap`, `nomor_telepon`, `kode_pos`, `alamat_lengkap`, `username_user`, `password_user`) VALUES
-(1, 'anjanijani@gmail.com', 'Ratih Anjani', '081212345678', '11111111', 'Jalan Pegangsaan Timur No.56 06/04', 'anjani', '$2y$10$iU1AgcbOAuNi4wOmC61CvOKwvRFiOlApKBysaagACvTQEkK0B3qom'),
-(2, 'moriarty@gmail.com', 'Moriarty XYZ', '081243215678', '12345', 'Jalan Pegangsaan Timur No.57 06/04', 'moriarty', '$2y$10$Z3/XElVYQz4FZEoafiHDlefvL1S0dcOYev49IJaME.9P3aC1j8cbi'),
-(4, 'anburoot712@gmail.com', 'Rafi Arsalan', '085880329771', '43365', 'Kp. jamban 1 rt 03/04, Cikakak', 'raparsalan', '$2y$10$4v3F3W05o2JTlsa4M0kHbuxEhmKw8.Bs.Zr17zpcwtyFsB45Rm2vu');
+INSERT INTO `user` (`id_user`, `email`, `nama_lengkap`, `nomor_telepon`, `kode_pos`, `kota`, `alamat_lengkap`, `username_user`, `password_user`) VALUES
+(1, 'anjanijani@gmail.com', 'Ratih Anjani', '081212345678', '11111111', 'Bandung', 'Jalan Pegangsaan Timur No.56 06/04', 'anjani', '$2y$10$iU1AgcbOAuNi4wOmC61CvOKwvRFiOlApKBysaagACvTQEkK0B3qom'),
+(2, 'moriarty@gmail.com', 'Moriarty XYZ', '081243215678', '12345', 'Bandung', 'Jalan Pegangsaan Timur No.57 06/04', 'moriarty', '$2y$10$Z3/XElVYQz4FZEoafiHDlefvL1S0dcOYev49IJaME.9P3aC1j8cbi'),
+(7, 'anburoot712@gmail.com', 'Rafi Arsalan', '085880329771', '43365', 'Sukabumi', 'Kp. jamban 1 rt 03/04, Cikakak', 'raparsalan', '$2y$10$5ixbV3GnhCUjh1FYUMGV/uLXpO9R0wYuRO6sfXT3C/f1IEUS.EBsS');
 
 --
 -- Indexes for dumped tables
@@ -186,9 +281,15 @@ ALTER TABLE `admin`
 -- Indeks untuk tabel `cart`
 --
 ALTER TABLE `cart`
-  ADD PRIMARY KEY (`id_cart`),
   ADD KEY `id_produk` (`id_produk`),
-  ADD KEY `cart_ibfk_2` (`id_user`);
+  ADD KEY `id_cart` (`id_cart`);
+
+--
+-- Indeks untuk tabel `cart_id`
+--
+ALTER TABLE `cart_id`
+  ADD PRIMARY KEY (`id_cart`),
+  ADD KEY `id_user` (`id_user`);
 
 --
 -- Indeks untuk tabel `kategori_barang`
@@ -209,11 +310,32 @@ ALTER TABLE `metode_pengiriman`
   ADD PRIMARY KEY (`id_ekspedisi`);
 
 --
+-- Indeks untuk tabel `opsi_pembayaran`
+--
+ALTER TABLE `opsi_pembayaran`
+  ADD PRIMARY KEY (`id_opsi`);
+
+--
+-- Indeks untuk tabel `pesanan`
+--
+ALTER TABLE `pesanan`
+  ADD PRIMARY KEY (`id_pesanan`),
+  ADD KEY `pesanan_ibfk_2` (`id_opsi`),
+  ADD KEY `pesanan_ibfk_1` (`id_user`);
+
+--
 -- Indeks untuk tabel `produk`
 --
 ALTER TABLE `produk`
   ADD PRIMARY KEY (`id_produk`),
   ADD KEY `id_kategori` (`id_kategori`);
+
+--
+-- Indeks untuk tabel `produk_pesanan`
+--
+ALTER TABLE `produk_pesanan`
+  ADD KEY `pesanan_1` (`id_pesanan`),
+  ADD KEY `produk_1` (`id_produk`);
 
 --
 -- Indeks untuk tabel `user`
@@ -232,10 +354,10 @@ ALTER TABLE `admin`
   MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `cart`
+-- AUTO_INCREMENT untuk tabel `cart_id`
 --
-ALTER TABLE `cart`
-  MODIFY `id_cart` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `cart_id`
+  MODIFY `id_cart` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `kategori_barang`
@@ -256,16 +378,28 @@ ALTER TABLE `metode_pengiriman`
   MODIFY `id_ekspedisi` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT untuk tabel `opsi_pembayaran`
+--
+ALTER TABLE `opsi_pembayaran`
+  MODIFY `id_opsi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT untuk tabel `pesanan`
+--
+ALTER TABLE `pesanan`
+  MODIFY `id_pesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
 -- AUTO_INCREMENT untuk tabel `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -276,13 +410,33 @@ ALTER TABLE `user`
 --
 ALTER TABLE `cart`
   ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id_produk`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `id_cart` FOREIGN KEY (`id_cart`) REFERENCES `cart_id` (`id_cart`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `cart_id`
+--
+ALTER TABLE `cart_id`
+  ADD CONSTRAINT `id_user` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `pesanan`
+--
+ALTER TABLE `pesanan`
+  ADD CONSTRAINT `pesanan_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pesanan_ibfk_2` FOREIGN KEY (`id_opsi`) REFERENCES `opsi_pembayaran` (`id_opsi`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `produk`
 --
 ALTER TABLE `produk`
   ADD CONSTRAINT `produk_ibfk_1` FOREIGN KEY (`id_kategori`) REFERENCES `kategori_barang` (`id_kategori`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `produk_pesanan`
+--
+ALTER TABLE `produk_pesanan`
+  ADD CONSTRAINT `pesanan_1` FOREIGN KEY (`id_pesanan`) REFERENCES `pesanan` (`id_pesanan`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `produk_1` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id_produk`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

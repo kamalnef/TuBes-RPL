@@ -50,10 +50,19 @@
                 $_SESSION["login"] = true;
                 $id = $row["id_user"];
                 $kueri = mysqli_query($conn, "SELECT * FROM cart_id WHERE id_user = $id");
+                $jml =0;
                 $cart = mysqli_fetch_assoc($kueri);
                 // Set Session Buat Nampilin Nama User
                 $_SESSION["nama"] = $row["nama_lengkap"];
                 $_SESSION["cart"] = $cart["id_cart"];
+                $_SESSION["kodepos"] = $row["kode_pos"];
+                $_SESSION["id"] = $row["id_user"];
+                $_SESSION["alamat"] = $row["alamat_lengkap"];
+                $id_cart = $cart["id_cart"];
+                $produk = mysqli_query($conn, "SELECT * FROM cart WHERE id_cart = $id_cart");
+                while($row = mysqli_fetch_assoc($produk))
+								{$jml++;};
+                $_SESSION["jml"] = $jml;
                 // Cek Remember Me
                 if(isset($_POST['remember']))
                 {

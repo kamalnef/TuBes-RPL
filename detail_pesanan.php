@@ -1,7 +1,7 @@
 <?php
-	include("config.php");
+
 	session_start();
-	$cart=$_SESSION['cart'];
+
 	if(!isset($_SESSION["login"]))
 	{
 		header("location: login.php");
@@ -112,77 +112,110 @@
 		<div class="container">
 			<div class="row no-gutters slider-text align-items-center justify-content-center">
 				<div class="col-md-9 ftco-animate text-center">
-					<p class="breadcrumbs"><span class="mr-2"><a href="index.php">Home</a></span> <span><a href="daftar_pesanan.php">order</a></span></p>
-					<h1 class="mb-0 bread">My Wishlist</h1>
+					<p class="breadcrumbs"><span class="mr-2"><a href="index.php">Home</a></span> <span>Checkout</span>
+					</p>
+					<h1 class="mb-0 bread">Checkout</h1>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<section class="ftco-section ftco-cart">
+	<section class="ftco-section">
 		<div class="container">
-			<div class="row">
-				<div class="col-md-12 ftco-animate">
-					<div class="cart-list">	
-						<a href="daftar_pesanan.php" class="btn btn-dark mb-2">LIHAT DAFTAR PESANAN </a>
-						<table class="table">
-							<thead class="thead-primary">
-								<tr class="text-center">
-									<th>&nbsp;</th>
-									<th>&nbsp;</th>
-									<th>Product</th>
-									<th>Price</th>
-									<th>Quantity</th>
-									<th>Total</th>
-								</tr>
-							</thead>
-							<tbody>
-							<?php
-								$_SESSION['total_harga'] =0;
-								$_SESSION['total_berat'] =0 ;
-								$query = "SELECT * from cart, produk where cart.id_cart = '$cart'  and cart.id_produk = produk.id_produk;";
-								$result = mysqli_query($conn, $query);
-								while($row = mysqli_fetch_assoc($result))
-								{
-								?>
-									<tr class="text-center">
-										<td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
-										<td class="image-prod">
-											<img class="img-fluid" width="300px" src="images/produk/<?=$row['gambar_produk']?>">
-										</td>
-										<td class="product-name">
-											<h3><?=$row['nama_produk']?></h3>
-										</td>
-										<td class="price">Rp <?=number_format($row['harga_produk'],0,"",".")?></td>
-										<td class="quantity"><?=$row['jumlah_barang']?> Buah</td>
-										<td class="total">Rp <?=number_format($row['total_harga'],0,"",".")?></td>
-									</tr>
-
-								<?php
-									$_SESSION['total_harga'] += $row['total_harga'];
-									$_SESSION['total_berat'] += $row['total_berat'];
-								}
-								?>
-							</tbody>
-						</table>
+			<div class="row justify-content-center">
+				<div class="col-xl-10 ftco-animate">
+					<form action="proses_pesanan.php" method="POST" class="billing-form">
+						<h3 class="mb-4 billing-heading">Detail Pesanan</h3>
+						<div class="row align-items-end">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="lastname">Nama Lengkap</label>
+									<input type="text" class="form-control" name="nama_lengkap" value="<?=$_SESSION['nama']?>" >
+								</div>
+							</div>
+							<div class="col-md-6">
+								<input type="hidden" name="total_berat" value="<?=$_SESSION['total_berat']?>">
+								<div class="form-group">
+									<label for="province">Provinsi</label>
+									<select class="form-control" name="nama_provinsi" style="color: black;">
+									</select>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="towncity">Kota / Kabupaten</label>
+									<select class="form-control" name="nama_distrik" style="color: black;">
+									</select>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="pengiriman">Opsi Pembayaran</label>
+									<select class="form-control" name="pembayaran" style="color: black;" placeholder="Pilih opsi pembayaran">
+									<option value='gopay'>Gopay</option>
+									<option value='shopeepay'>Shopeepay</option>
+									<option value='dana'>Dana</option>
+									<option value='ovo'>OVO</option>
+									<option value='transfer'>Transfer Bank</option>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<select class="form-control" name="" style="color: black;">
+									</select>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="alamat">Alamat Lengkap</label>
+									<input type="text" class="form-control" value="<?=$_SESSION['alamat']?>" name="alamat">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="kodepos">Kode Pos</label>
+									<input type="text" class="form-control" value="<?=$_SESSION['kodepos']?>" name="kodepos">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="ekspedisi">Pilih Ekspedisi</label>
+									<select class="form-control" name="nama_ekspedisi" style="color: black;">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<input type="hidden" class="form-control" placeholder="">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="pengiriman">Opsi Pengiriman</label>
+									<select class="form-control" name="nama_pengiriman" style="color: black;">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<input type="hidden" class="form-control" name="provinsi">
+									<input type="hidden" class="form-control" name="tipe">
+									<input type="hidden" class="form-control" name="distrik">
+									<input type="hidden" class="form-control" name="ekspedisi">
+									<input type="hidden" class="form-control" name="pengiriman">
+									<input type="hidden" class="form-control" name="ongkir">
+								</div>
+							</div>
+						</div>
+				
+						<button type="submit">Pesan sekarang</button>
+					</form>
+								
+							</div>
+						</div>
 					</div>
-				</div>
-			</div>
-			<div class="row justify-content-start">
-				<div class="col col-lg-5 col-md-6 mt-5 cart-wrap ftco-animate">
-					<div class="cart-total mb-3">
-						<h3>Cart Totals</h3>
-						<p class="d-flex">
-							<span>Subtotal</span>
-							<span><?=number_format($_SESSION['total_harga'],0,"",".")?></span>
-						</p>
-					</div>
-					<p class="text-center"><a href="detail_pesanan.php" class="btn btn-primary py-3 px-4">Proceed to
-							Checkout</a></p>
-				</div>
+				</div> <!-- .col-md-8 -->
 			</div>
 		</div>
-	</section>
+	</section> <!-- .section -->
 
 
 	<footer class="ftco-footer ftco-section">
@@ -291,44 +324,77 @@
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 	<script src="js/google-map.js"></script>
 	<script src="js/main.js"></script>
-
 	<script>
-		$(document).ready(function () {
-
-			var quantitiy = 0;
-			$('.quantity-right-plus').click(function (e) {
-
-				// Stop acting like a button
-				e.preventDefault();
-				// Get the field name
-				var quantity = parseInt($('#quantity').val());
-
-				// If is not undefined
-
-				$('#quantity').val(quantity + 1);
-
-
-				// Increment
-
-			});
-
-			$('.quantity-left-minus').click(function (e) {
-				// Stop acting like a button
-				e.preventDefault();
-				// Get the field name
-				var quantity = parseInt($('#quantity').val());
-
-				// If is not undefined
-
-				// Increment
-				if (quantity > 0) {
-					$('#quantity').val(quantity - 1);
+		$(document).ready(function(){
+			$.ajax({
+				type:'POST',
+				url:'dataprovinsi.php',
+				success:function(hasil_provinsi)
+				{
+					$("select[name=nama_provinsi]").html(hasil_provinsi)
+					console.log(hasil)
 				}
 			});
 
-		});
-	</script>
+			$("select[name=nama_provinsi]").on("change",function(){
+				var id_provinsi_terpilih = $("option:selected",this).attr("id_provinsi");
 
+				$.ajax({
+					type:'POST',
+					url:'datadistrik.php',
+					data:'id_provinsi='+id_provinsi_terpilih,	
+					success:function(hasil_distrik){
+						$("select[name=nama_distrik]").html(hasil_distrik);
+					}
+				});
+			});
+
+			$.ajax({
+					type:'POST',
+					url:'dataekspedisi.php',	
+					success:function(hasil_ekspedisi){
+						$("select[name=nama_ekspedisi]").html(hasil_ekspedisi);
+					}
+				});
+
+			$("select[name=nama_ekspedisi").on("change", function(){
+
+				var ekspedisi_terpilih = $("select[name=nama_ekspedisi]").val();
+
+				var distrik_terpilih = $("option:selected", "select[name=nama_distrik]").attr("id_distrik");
+				
+				var total_berat = $("input[name=total_berat]").val();
+				$("input[name=ekspedisi]").val(ekspedisi_terpilih)
+				
+				$.ajax({
+					type:'POST',
+					url:'datapaket.php',
+					data:'ekspedisi='+ekspedisi_terpilih+'&distrik='+distrik_terpilih+'&berat='+total_berat,
+					success:function(hasil_pengiriman){
+						$("select[name=nama_pengiriman]").html(hasil_pengiriman);
+					}
+				})
+			});
+
+			$("select[name=nama_distrik]").on("change", function(){
+				var prov = $("option:selected", this).attr("nama_provinsi");
+				var tipe = $("option:selected", this).attr("tipe_distrik");
+				var dist = $("option:selected", this).attr("nama_distrik");
+
+				$("input[name=provinsi]").val(prov)
+				$("input[name=tipe]").val(tipe)
+				$("input[name=distrik]").val(dist)
+			})
+
+			$("select[name=nama_pengiriman]").on("change", function(){
+				var pengiriman = $("option:selected", this).attr("pengiriman");
+				var ongkir = $("option:selected", this).attr("ongkir");
+
+				$("input[name=pengiriman]").val(pengiriman);
+				$("input[name=ongkir]").val(ongkir);
+			})
+		})
+	</script>
 </body>
 
 </html>
