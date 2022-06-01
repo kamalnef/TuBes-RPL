@@ -39,7 +39,7 @@
         else
         {
             echo "<script>
-                alert('Data Berhasil Diupdate!');
+                alert('Data Gagal Diupdate!');
                 window.location = 'admin.php';
             </script>";
         }

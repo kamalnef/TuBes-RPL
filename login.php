@@ -101,6 +101,7 @@
     <title>Sign In to K-Fever</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/style2.css">
 </head>
 
 <body>
@@ -126,10 +127,11 @@
                         <button name="login">SUBMIT</button>
                     </div>
                 </form>
+
                 <div class="to-rp">
-                    <p class="baru-kah">New to K-Fever?</p>
-                    <p class="p-a-to-rp"><a class="a-to-rp" href="register.php"><strong class="">Create an account
-                                now!</strong></a></p>
+                    <a class="change-pw a-to-rp" href="change_pw1.php"><strong>Change Password</strong></a>
+                    <p class="baru-kah">New to K-Fever? <span class="p-a-to-rp"><a class="a-to-rp" href="register.php"><strong class="">Create an account
+                        now!</strong></a></span></p>
                 </div>
             </div>
         </div>

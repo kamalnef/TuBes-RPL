@@ -1,5 +1,6 @@
 <?php
 
+    include("config.php");
 	session_start();
 
 	if(!isset($_SESSION["login"]))
@@ -8,13 +9,16 @@
 		exit;
 	}
 
+    $id = $_SESSION['id'];
+    $profile = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id'");
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<title>Detail Pesanan</title>
+	<title>User Profile</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -115,9 +119,9 @@
 		<div class="container">
 			<div class="row no-gutters slider-text align-items-center justify-content-center">
 				<div class="col-md-9 ftco-animate text-center">
-					<p class="breadcrumbs"><span class="mr-2"><a href="index.php">Home</a></span> <span>Checkout</span>
+					<p class="breadcrumbs"><span>User</span>
 					</p>
-					<h1 class="mb-0 bread">Checkout</h1>
+					<h1 class="mb-0 bread">Profile</h1>
 				</div>
 			</div>
 		</div>
@@ -127,91 +131,56 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-xl-10 ftco-animate">
-					<form action="proses_pesanan.php" method="POST" class="billing-form">
-						<h3 class="mb-4 billing-heading">Detail Pesanan</h3>
+					<form action="" method="POST" class="billing-form profile-form">
+						<h3 class="mb-4 billing-heading">Identitas Pengguna</h3>
 						<div class="row align-items-end">
 							<div class="col-md-6">
+                                <?php
+                                    $row = mysqli_fetch_assoc($profile);
+                                ?>
 								<div class="form-group">
-									<label for="lastname">Nama Lengkap</label>
-									<input type="text" class="form-control" name="nama_lengkap" value="<?=$_SESSION['nama']?>" >
-								</div>
-							</div>
-							<div class="col-md-6">
-								<input type="hidden" name="total_berat" value="<?=$_SESSION['total_berat']?>">
-								<div class="form-group">
-									<label for="province">Provinsi</label>
-									<select class="form-control" name="nama_provinsi" style="color: black;">
-									</select>
+									<label for="nama_lengkap">Nama Lengkap</label>
+									<input READONLY/ type="text" class="form-control" name="nama_lengkap" value="<?=$_SESSION['nama']?>" >
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="towncity">Kota / Kabupaten</label>
-									<select class="form-control" name="nama_distrik" style="color: black;">
-									</select>
+									<label for="email">E-Mail</label>
+									<input READONLY/ type="text" class="form-control" name="email" value="<?=$row['email']?>" >
+								</div>
+							</div>
+							<div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="alamat">Alamat</label>
+                                    <textarea READONLY/ cols="109" rows="5" class="form-control textarea" name="alamat"><?=$row['alamat_lengkap']?></textarea>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="pengiriman">Opsi Pembayaran</label>
-									<select class="form-control" name="pembayaran" style="color: black;" placeholder="Pilih opsi pembayaran">
-									<option value='gopay'>Gopay</option>
-									<option value='shopeepay'>Shopeepay</option>
-									<option value='dana'>Dana</option>
-									<option value='ovo'>OVO</option>
-									<option value='transfer'>Transfer Bank</option>
+									<label for="kode_pos">Kode Pos</label>
+									<input READONLY/ type="text" class="form-control" name="kode_pos" value="<?=$row['kode_pos']?>" >
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<select class="form-control" name="" style="color: black;">
-									</select>
+									<label for="kota">Kota</label>
+									<input READONLY/ type="text" class="form-control" name="kota" value="<?=$row['kota']?>" >
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="alamat">Alamat Lengkap</label>
-									<input type="text" class="form-control" value="<?=$_SESSION['alamat']?>" name="alamat">
+									<label for="nomor_telepon">nomor_telepon</label>
+									<input READONLY/ type="text" class="form-control" name="nomor_telepon" value="<?=$row['nomor_telepon']?>" >
 								</div>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-6 btn-update-profil">
 								<div class="form-group">
-									<label for="kodepos">Kode Pos</label>
-									<input type="text" class="form-control" value="<?=$_SESSION['kodepos']?>" name="kodepos">
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<label for="ekspedisi">Pilih Ekspedisi</label>
-									<select class="form-control" name="nama_ekspedisi" style="color: black;">
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<input type="hidden" class="form-control" placeholder="">
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<label for="pengiriman">Opsi Pengiriman</label>
-									<select class="form-control" name="nama_pengiriman" style="color: black;">
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<input type="hidden" class="form-control" name="provinsi">
-									<input type="hidden" class="form-control" name="tipe">
-									<input type="hidden" class="form-control" name="distrik">
-									<input type="hidden" class="form-control" name="ekspedisi">
-									<input type="hidden" class="form-control" name="pengiriman">
-									<input type="hidden" class="form-control" name="ongkir">
+                                    <a href="update_profil.php" class="update-profil">UPDATE DATA IDENTITAS</a>
+                                    <p>woy</p>
 								</div>
 							</div>
 						</div>
-				
-						<button type="submit">Pesan sekarang</button>
 					</form>
-								
 							</div>
 						</div>
 					</div>
@@ -327,77 +296,6 @@
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 	<script src="js/google-map.js"></script>
 	<script src="js/main.js"></script>
-	<script>
-		$(document).ready(function(){
-			$.ajax({
-				type:'POST',
-				url:'dataprovinsi.php',
-				success:function(hasil_provinsi)
-				{
-					$("select[name=nama_provinsi]").html(hasil_provinsi)
-					console.log(hasil)
-				}
-			});
-
-			$("select[name=nama_provinsi]").on("change",function(){
-				var id_provinsi_terpilih = $("option:selected",this).attr("id_provinsi");
-
-				$.ajax({
-					type:'POST',
-					url:'datadistrik.php',
-					data:'id_provinsi='+id_provinsi_terpilih,	
-					success:function(hasil_distrik){
-						$("select[name=nama_distrik]").html(hasil_distrik);
-					}
-				});
-			});
-
-			$.ajax({
-					type:'POST',
-					url:'dataekspedisi.php',	
-					success:function(hasil_ekspedisi){
-						$("select[name=nama_ekspedisi]").html(hasil_ekspedisi);
-					}
-				});
-
-			$("select[name=nama_ekspedisi").on("change", function(){
-
-				var ekspedisi_terpilih = $("select[name=nama_ekspedisi]").val();
-
-				var distrik_terpilih = $("option:selected", "select[name=nama_distrik]").attr("id_distrik");
-				
-				var total_berat = $("input[name=total_berat]").val();
-				$("input[name=ekspedisi]").val(ekspedisi_terpilih)
-				
-				$.ajax({
-					type:'POST',
-					url:'datapaket.php',
-					data:'ekspedisi='+ekspedisi_terpilih+'&distrik='+distrik_terpilih+'&berat='+total_berat,
-					success:function(hasil_pengiriman){
-						$("select[name=nama_pengiriman]").html(hasil_pengiriman);
-					}
-				})
-			});
-
-			$("select[name=nama_distrik]").on("change", function(){
-				var prov = $("option:selected", this).attr("nama_provinsi");
-				var tipe = $("option:selected", this).attr("tipe_distrik");
-				var dist = $("option:selected", this).attr("nama_distrik");
-
-				$("input[name=provinsi]").val(prov)
-				$("input[name=tipe]").val(tipe)
-				$("input[name=distrik]").val(dist)
-			})
-
-			$("select[name=nama_pengiriman]").on("change", function(){
-				var pengiriman = $("option:selected", this).attr("pengiriman");
-				var ongkir = $("option:selected", this).attr("ongkir");
-
-				$("input[name=pengiriman]").val(pengiriman);
-				$("input[name=ongkir]").val(ongkir);
-			})
-		})
-	</script>
 </body>
 
 </html>

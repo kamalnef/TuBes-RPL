@@ -9,7 +9,7 @@
 <html lang="en">
 
 <head>
-	<title>K-Fever</title>
+	<title>Home Page</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -25,6 +25,7 @@
 	<link rel="stylesheet" href="css/aos.css">
 
 	<link rel="stylesheet" href="css/ionicons.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
 
 	<link rel="stylesheet" href="css/bootstrap-datepicker.css">
 	<link rel="stylesheet" href="css/jquery.timepicker.css">
@@ -33,6 +34,7 @@
 	<link rel="stylesheet" href="css/flaticon.css">
 	<link rel="stylesheet" href="css/icomoon.css">
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/style3.css">
 </head>
 
 <body class="goto-here">
@@ -101,6 +103,7 @@
 					<li class="nav-item dropdown"><a href="shop.php" class="nav-link">Shop</a></li>
 					<li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
 					<li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
+					<li class="nav-item"><a href="profile.php" class="nav-link">Profile</a></li>
 					<li class="nav-item cta cta-colored"><a href="cart.php" class="nav-link">
 					<span class="icon-shopping_cart"></span>[<?=$_SESSION["jml"]?>]</a></li>
 

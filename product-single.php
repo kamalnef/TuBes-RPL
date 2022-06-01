@@ -1,6 +1,32 @@
 <?php
 
 	session_start();
+	include("config.php");
+	
+	if(!isset($_GET['key'])){
+		header("location: shop.php");
+		exit();
+	}
+
+	$key = $_GET['key'];
+
+
+	$query = mysqli_query($conn, "SELECT * FROM produk WHERE id_produk = '$key' limit 1");
+
+	$data = mysqli_fetch_array($query);
+	$id_kategori = $data['id_kategori'];
+	$nama_produk = $data['nama_produk'];
+	$gambar_produk = $data['gambar_produk'];
+	$stok_barang = $data['stok_barang'];
+	$deskripsi = $data['deskripsi'];
+	$berat_produk = $data['berat_produk'];
+	$harga_produk = $data['harga_produk'];
+	$bonus_produk = $data['bonus_produk'];
+	$tgl_rilis = $data['tgl_rilis'];
+	$label = $data['label'];
+	$produksi = $data['produksi'];
+	$lokasi_produk = $data['lokasi_produk'];
+	$kondisi_produk = $data['kondisi_produk'];
 
 ?>
 
@@ -8,7 +34,7 @@
 <html lang="en">
 
 <head>
-	<title>Minishop - Free Bootstrap 4 Template by Colorlib</title>
+	<title><?= $nama_produk ?></title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -37,37 +63,6 @@
 </head>
 
 <body class="goto-here">
-	<?php
-	
-		if(!isset($_GET['key'])){
-			header("location: shop.php");
-			exit();
-		}
-
-		$key = $_GET['key'];
-
-		include("config.php");
-
-		$query = mysqli_query($conn, "SELECT * FROM produk WHERE id_produk = '$key' limit 1");
-
-		$data = mysqli_fetch_array($query);
-		$id_kategori = $data['id_kategori'];
-		$nama_produk = $data['nama_produk'];
-		$gambar_produk = $data['gambar_produk'];
-		$stok_barang = $data['stok_barang'];
-		$deskripsi = $data['deskripsi'];
-		$berat_produk = $data['berat_produk'];
-		$harga_produk = $data['harga_produk'];
-		$bonus_produk = $data['bonus_produk'];
-		$tgl_rilis = $data['tgl_rilis'];
-		$label = $data['label'];
-		$produksi = $data['produksi'];
-		$lokasi_produk = $data['lokasi_produk'];
-		$kondisi_produk = $data['kondisi_produk'];
-	
-	?>
-
-
 	<div class="header__top py-1 bg-black">
 		<div class="container">
 			<div class="row atas-nav">
@@ -133,6 +128,7 @@
 					<li class="nav-item"><a href="shop.php" class="nav-link">Shop</a></li>
 					<li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
 					<li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
+					<li class="nav-item"><a href="profile.php" class="nav-link">Profile</a></li>
 					<li class="nav-item cta cta-colored"><a href="cart.php" class="nav-link"><span
 								class="fa-solid fa-cart-shopping"></span>[0]</a></li>
 
@@ -202,8 +198,8 @@
 						<div class="input-group col-md-6 d-flex mb-3">
 							<input type="hidden" name="key" value="<?= $key; ?>?">
 							<label for="qty" class=" mt-1 mr-4">Jumlah Barang</label>
-							<input type="text" id="qty" name="qty" class="quantity form-control input-number"
-								value="1" min="1" max="100">
+							<input type="number" id="qty" name="qty" class="quantity form-control input-number"
+								value="1" min="1" max="<?= $stok_barang; ?>">
 							<span><input type="submit" name="save" value="Add To Cart" class="btn btn-black py-3 px-4 mt-2"></span>
 						</div>
 						</form>

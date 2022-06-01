@@ -60,3 +60,26 @@
         margin-bottom: -40px;
     }
 }
+
+/* Change Password Page */
+.submit-c-pw {
+    margin-top: 15px !important;
+}
+
+/* Page Konfirmasi Pembayaran */
+.table tbody tr td.nomor-pesanan {
+    width: 10%;
+}
+
+.table tbody tr td.kode-pos {
+    width: 9%;
+}
+
+.table tbody tr td.harga {
+    width: 12%;
+}
+
+.table tbody tr td.status {
+    width: 12%;
+    font-weight: 700;
+}

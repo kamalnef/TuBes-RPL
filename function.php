@@ -102,4 +102,26 @@
         return mysqli_affected_rows($conn);
     }
 
+    function changePw($data) {
+        global $conn;
+
+        $password1 = mysqli_real_escape_string($conn, $data["password1"]);
+        $password2 = mysqli_real_escape_string($conn, $data["password2"]);
+        
+        if($password1 == $password2)
+        {
+          $password2 = password_hash($password2, PASSWORD_DEFAULT);
+          mysqli_query($conn, "UPDATE user SET password_user = '$password2'");
+        }
+        else
+        {
+          echo "<script>
+              alert('Password yang Dimasukkan Berbeda!');
+          </script>";
+          return false;
+        }
+
+        return mysqli_affected_rows($conn);
+    }
+
 ?>

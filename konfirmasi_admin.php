@@ -1,6 +1,7 @@
 <?php
 
 	session_start();
+    include("config.php");
 
 	if(!isset($_SESSION["admin"]))
 	{
@@ -8,81 +9,27 @@
 		exit;
 	}
 
-	include("config.php");
+    if(isset($_GET['id_pesanan']))
+    {
+        $id_pesanan = $_GET['id_pesanan'];
 
-	if(isset($_POST['tambah']))
-	{
-		$id_kategori = $_POST['id_kategori'];
-		$nama_produk = $_POST['nama_produk'];
-		$tmp_file = $_FILES['gambar_produk']['tmp_name'];
-		$nm_file = $_FILES['gambar_produk']['name'];
-		$stok_barang = $_POST['stok_barang'];
-		$deskripsi = $_POST['deskripsi'];
-		$berat_produk = $_POST['berat_produk'];
-		$harga_produk = $_POST['harga_produk'];
-		$bonus_produk = $_POST['bonus_produk'];
-		$tgl_rilis = $_POST['tgl_rilis'];
-		$label = $_POST['label'];
-		$produksi = $_POST['produksi'];
-		$lokasi_produk = $_POST['lokasi_produk'];
-		$kondisi_produk = $_POST['kondisi_produk'];
+        mysqli_query($conn, "UPDATE pesanan SET status_pembayaran = '2' WHERE id_pesanan = '$id_pesanan'");
 
-		if($nm_file !== "")
-		{
-			$type_file = $_FILES['gambar_produk']['type'];
-			$tipe = explode('/', $type_file);
-			$awal = strtolower(reset($tipe));
-			if($awal === "image")
-			{
-				$result = mysqli_query($conn, "INSERT INTO produk VALUES ('', '$id_kategori', '$nama_produk', '$nm_file', '$stok_barang', '$deskripsi', '$berat_produk', '$harga_produk', '$bonus_produk', '$tgl_rilis', '$label', '$produksi', '$lokasi_produk', '$kondisi_produk');");
-
-				if($result)
-				{
-					$dir = "images/PRODUCT ALBUM K-FEVER/$nm_file";
-	
-					move_uploaded_file($tmp_file, $dir);
-	
-					echo "<script>
-						alert('Data Berhasil Ditambahkan!');
-						window.location = 'admin.php';
-					</script>";
-				}
-				else
-				{
-					echo "<script>
-						alert('Data Gagal Ditambahkan!');
-						window.location = 'admin.php';
-					</script>";
-				}
-			}
-			else
-			{
-				echo "<script>
-						alert('File Yang Diupload Bukan Gambar!');
-						window.location = 'form_new.php.php';
-					</script>";
-			}
-		}
-		else
-		{
-			$result = mysqli_query($conn, "INSERT INTO produk VALUES ('', '$id_kategori', '$nama_produk', 'BE (Deluxe Edition).jpg', '$stok_barang', '$deskripsi', '$berat_produk', '$harga_produk', '$bonus_produk', '$tgl_rilis', '$label', '$produksi', '$lokasi_produk', '$kondisi_produk');");
-
-			if($result)
-			{
-				echo "<script>
-					alert('Data Berhasil Ditambahkan!');
-					window.location = 'admin.php';
-				</script>";
-			}
-			else
-			{
-				echo "<script>
-					alert('Data Gagal Ditambahkan!');
-					window.location = 'admin.php';
-				</script>";
-			}
-		}
-	}
+        if(mysqli_affected_rows($conn) > 0)
+        {
+            echo "<script>
+                    alert('Pembayaran Berhasil Dikonfirmasi!');
+                    window.location='konfirmasi_admin.php';
+                </script>";
+        }
+        else
+        {
+            echo "<script>
+                    alert('Pembayaran Gagal Dikonfirmasi!');
+                    window.location='konfirmasi_admin.php';
+                </script>";
+        }
+    }
 
 	if (isset($_POST['search'])){
 		$filter_key = "%" . $_POST['search'] . "%";
@@ -91,11 +38,11 @@
 		$filter_key = "%%";
 	}
 
-	$result = mysqli_query($conn, "SELECT * FROM produk WHERE nama_produk LIKE '$filter_key'");
-	$products = [];
+	$result = mysqli_query($conn, "SELECT * FROM pesanan WHERE nomor_pesanan LIKE '$filter_key'");
+	$pesanans = [];
 
-	while($produk = mysqli_fetch_assoc($result)) {
-		$products[] = $produk;
+	while($pesanan = mysqli_fetch_assoc($result)) {
+		$pesanans[] = $pesanan;
 	}
 
 ?>
@@ -104,7 +51,7 @@
 <html lang="en">
 
 <head>
-	<title>List Produk</title>
+	<title>List Pesanan</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -154,7 +101,7 @@
 		<div class="col-md-6 search-box">
 			<div class="form-group">
 				<form action="" method="post">
-					<input type="text" class="form-control" placeholder="Masukkan Nama Produk ..." name="search">
+					<input type="text" class="form-control" placeholder="Masukkan Nomor Pesanan ..." name="search">
 				</form>
 			</div>
 		</div>
@@ -165,15 +112,17 @@
 			<div class="row">
 				<div class="col-md-12 ftco-animate">
 					<div class="cart-list">
-						<table class="table">
+						<table class="table kp-table">
 							<thead class="thead-primary">
 								<tr class="text-center">
 									<th>Nomor</th>
-									<th>Gambar Produk</th>
-									<th>Nama Produk</th>
-									<th>Stok Produk</th>
-									<th>Kondisi Produk</th>
-									<th>Action</th>
+									<th>Nomor Pesanan</th>
+									<th>Nama Penerima</th>
+									<th>Alamat Pengiriman</th>
+									<th>Kode Pos</th>
+									<th>Total Harga</th>
+									<th>Bukti Pembayaran</th>
+									<th>Status</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -181,32 +130,56 @@
 								<!-- Foreach Data Produk -->
 								<?php
 									$nomor = 1;
-									foreach ($products as $product):
+									foreach ($pesanans as $pesanan):
+                                        $id_pesanan = $pesanan['id_pesanan'];
 								?>
-
 								<tr class="text-center">
 									<td class="product-remove">
 										<?= $nomor ?>
 									</td>
 
-									<td class="image-prod">
-										<img src="images/produk/<?= $product['gambar_produk'] ?>" alt="<?= $product['gambar_produk'] ?>" width="100">
-									</td>
-
-									<td class="product-name">
-										<?= $product['nama_produk'] ?>
+									<td class="nomor-pesanan">
+										<?= $pesanan['nomor_pesanan'] ?>
 									</td>
 
 									<td class="price">
-										<?= $product['stok_barang'] ?>
+										<?= $pesanan['nama_penerima'] ?>
 									</td>
 
 									<td class="quantity">
-										<?= $product['kondisi_produk'] ?>
+										<?= $pesanan['alamat_pengiriman'] ?>
 									</td>
 
-									<td class="total">
-										<a href="update2.php?key=<?= $product['id_produk'] ?>">UPDATE</a> | <a href="delete.php?key=<?= $product['id_produk'] ?>">DELETE</a>
+									<td class="kode-pos">
+										<?= $pesanan['kodepos'] ?>
+									</td>
+
+									<td class="harga">
+										Rp. <?= number_format($pesanan['total_bayar'],0,"",".")?>
+									</td>
+
+									<td class="quantity">
+										<a href="images/bukti_pembayaran/<?= $pesanan['bukti_pembayaran'] ?>" class="image-popup prod-img-bg"><img src="images/bukti_pembayaran/<?= $pesanan['bukti_pembayaran'] ?>"
+							class="img-fluid" alt="Bukti Pembayaran"></a>
+									</td>
+                                    
+                                    <td class='status'>
+                                    <?php
+                                    
+                                    if($pesanan['status_pembayaran'] == 0)
+                                    {
+										echo "Belum Dibayar";
+                                    }
+                                    else if($pesanan['status_pembayaran'] == 1)
+                                    {
+                                        echo "<a href='konfirmasi_admin.php?id_pesanan=$id_pesanan'>Accept</a>";
+                                    }
+                                    else if($pesanan['status_pembayaran'] == 2)
+                                    {
+                                        echo "Sudah Lunas";
+                                    }
+                                    
+                                    ?>
 									</td>
 								</tr>
 

@@ -14,11 +14,12 @@
 <html lang="en">
 
 <head>
-	<title>Minishop - Free Bootstrap 4 Template by Colorlib</title>
+	<title>Daftar Pesanan</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
 
 	<link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
 	<link rel="stylesheet" href="css/animate.css">
@@ -38,6 +39,7 @@
 	<link rel="stylesheet" href="css/flaticon.css">
 	<link rel="stylesheet" href="css/icomoon.css">
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/style3.css">
 </head>
 
 <body class="goto-here">
@@ -99,6 +101,7 @@
 					<li class="nav-item"><a href="shop.php" class="nav-link">Shop</a></li>
 					<li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
 					<li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
+					<li class="nav-item"><a href="profile.php" class="nav-link">Profile</a></li>
 					<li class="nav-item cta cta-colored"><a href="cart.php" class="nav-link"><span
 								class="icon-shopping_cart"></span>[0]</a></li>
 

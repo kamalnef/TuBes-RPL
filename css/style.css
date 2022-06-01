@@ -13636,7 +13636,7 @@ h5,
   padding-left: 15px;
   padding-right: 15px;
   background: transparent !important;
-  color: rgba(0, 0, 0, 0.4) !important;
+  color: #000000 !important;
   font-size: 14px;
   border-radius: 0px;
   -webkit-box-shadow: none !important;
@@ -15512,7 +15512,7 @@ textarea.form-control {
 .sign-in .form {
   border: 1px solid black;
   padding: 15px;
-  width: 350px;
+  width: 367px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 
@@ -15619,7 +15619,7 @@ textarea.form-control {
 
 .sign-in .form .box .to-rp .a-to-rp {
   color: #423d2b;
-  font-size: 17px;
+  font-size: 15px;
 }
 
 .sign-in .form .box .to-rp .p-a-to-rp {
